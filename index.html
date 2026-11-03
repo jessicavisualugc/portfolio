@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261102-f">
+<meta name="build" content="20261102-g">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -1437,8 +1437,9 @@
       if(e.source !== iframe.contentWindow) return;
       let d = e.data;
       if(typeof d === "string"){ try{ d = JSON.parse(d); }catch(err){ return; } }
+      if(d && d.event === "onStateChange" && d.info === 1){ caixa.classList.add("pronto"); semLegenda(iframe); }
       if(!d || d.event !== "infoDelivery" || !d.info) return;
-      if(d.info.playerState === 1) semLegenda(iframe);
+      if(d.info.playerState === 1){ caixa.classList.add("pronto"); semLegenda(iframe); }
       if(typeof d.info.muted === "boolean") mudo = d.info.muted;
       if(celular && !tentouSom && d.info.playerState === 1){
         tentouSom = true;
@@ -1450,7 +1451,8 @@
     }
     window.addEventListener("message", aoMensagem);
     iframe.addEventListener("load", () => {
-      caixa.classList.add("pronto");
+      // O player so aparece quando o video realmente comeca (evita mostrar a tela inicial do YouTube, com a listra e o botao de play).
+      setTimeout(() => caixa.classList.add("pronto"), 4500);
       try{ iframe.contentWindow.postMessage(JSON.stringify({ event: "listening", id: 1, channel: "widget" }), "*"); }catch(e){}
       semLegenda(iframe);
     });
