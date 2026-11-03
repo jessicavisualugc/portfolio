@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261102-h">
+<meta name="build" content="20261102-i">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -1364,20 +1364,14 @@
       enviarComando(iframe, "pauseVideo");
       palco.classList.remove("ativo");
       document.body.classList.remove("palco-aberto");
-      const volta = cartao.getBoundingClientRect();
-      const atual = tela.getBoundingClientRect();
-      const dx = (volta.left + volta.width / 2) - (atual.left + atual.width / 2);
-      const dy = (volta.top + volta.height / 2) - (atual.top + atual.height / 2);
-      if(!reduzirMovimento){ tela.style.transform = `translate(${dx}px, ${dy}px) scale(${volta.width / atual.width})`; }
-      setTimeout(() => {
-        tela.classList.remove("tela-em-foco");
-        ["position", "left", "top", "width", "height", "transition", "transform"].forEach(p => tela.style.removeProperty(p));
-        cartao.style.removeProperty("height");
-        if(artigo) artigo.classList.remove("card-foco");
-        if(grade) grade.classList.remove("grid-foco");
-        palco.remove();
-        aoFechar();
-      }, reduzirMovimento ? 0 : 480);
+      // Fecha na hora, sem animacao de volta.
+      tela.classList.remove("tela-em-foco");
+      ["position", "left", "top", "width", "height", "transition", "transform"].forEach(p => tela.style.removeProperty(p));
+      cartao.style.removeProperty("height");
+      if(artigo) artigo.classList.remove("card-foco");
+      if(grade) grade.classList.remove("grid-foco");
+      palco.remove();
+      aoFechar();
     }
     function aoTeclar(e){ if(e.key === "Escape") fechar(); }
     document.addEventListener("keydown", aoTeclar);
@@ -1484,9 +1478,8 @@
       window.removeEventListener("message", aoMensagem);
       window.removeEventListener("resize", ajustar);
       if(observador) observador.disconnect();
-      palco.classList.remove("ativo");
       document.body.classList.remove("palco-aberto");
-      setTimeout(() => palco.remove(), reduzirMovimento ? 0 : 350);
+      palco.remove();
       botao.focus({ preventScroll: true });
     }
     function aoTeclar(e){ if(e.key === "Escape") fechar(); }
