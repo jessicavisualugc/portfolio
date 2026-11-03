@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261102-a">
+<meta name="build" content="20261102-b">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -188,7 +188,7 @@
   .hero-grid{ display: grid; grid-template-columns: 1.15fr 0.85fr; min-height: min(86vh, 720px); }
   .hero-painel{
     position: relative;
-    background: #f1e8dc;
+    background: #fdf5f7;
     color: #5e3d2e;
     padding: 64px 48px 56px max(28px, calc((100vw - 1160px) / 2 + 28px));
     display: flex;
@@ -608,7 +608,7 @@
     .bf-contagem strong{ font-size: 1.3rem; }
     .bf-botao{ font-size: 0.58rem; padding: 6px 11px; letter-spacing: 0.08em; white-space: nowrap; }
 
-    .hero-grid{ display: grid; grid-template-columns: minmax(0, 1fr) 42%; column-gap: 10px; align-items: start; min-height: 0; padding: 26px 18px 30px; background: #f1e8dc; }
+    .hero-grid{ display: grid; grid-template-columns: minmax(0, 1fr) 42%; column-gap: 10px; align-items: start; min-height: 0; padding: 26px 18px 30px; background: #fdf5f7; }
     .hero-painel{ display: contents; }
     .hero-painel .estrela, .hero-foto-area .estrela, .hero-foto-area .ponto{ display: none; }
     .hero-kicker{ grid-column: 1; grid-row: 1; margin: 0 0 12px; }
@@ -1290,7 +1290,7 @@
     if(!tela || tela.querySelector("iframe")) return;
     const iframe = document.createElement("iframe");
     iframe.className = "player-cartao";
-    iframe.src = `https://www.youtube-nocookie.com/embed/${botao.dataset.videoId}?autoplay=0&controls=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&fs=0&disablekb=1&enablejsapi=1`;
+    iframe.src = `https://www.youtube-nocookie.com/embed/${botao.dataset.videoId}?autoplay=0&controls=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&cc_load_policy=0&fs=0&disablekb=1&enablejsapi=1`;
     iframe.title = botao.getAttribute("aria-label") || "";
     iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
     tela.insertBefore(iframe, botao);
@@ -1398,7 +1398,7 @@
 
     // O player e criado grande (720x1280) e reduzido por CSS: assim o YouTube entrega alta qualidade em vez de 360p.
     const iframe = document.createElement("iframe");
-    iframe.src = `https://www.youtube-nocookie.com/embed/${botao.dataset.videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080&enablejsapi=1${celular ? "&mute=1" : ""}`;
+    iframe.src = `https://www.youtube-nocookie.com/embed/${botao.dataset.videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080&cc_load_policy=0&enablejsapi=1${celular ? "&mute=1" : ""}`;
     iframe.title = botao.getAttribute("aria-label") || "";
     iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
     iframe.allowFullscreen = true;
