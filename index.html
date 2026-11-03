@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261102-e">
+<meta name="build" content="20261102-f">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -657,8 +657,10 @@
   }
   .promessas li::before{ color: var(--azul-escuro); font-family: "Manrope", system-ui, sans-serif; font-weight: 800; font-size: 1rem; }
   /* Video em destaque: o resto da pagina fica ao fundo */
-  .video-palco{ position: fixed; inset: 0; z-index: 3000; display: flex; align-items: center; justify-content: center; background: rgba(26, 36, 64, 0); -webkit-backdrop-filter: blur(0); backdrop-filter: blur(0); transition: background 0.4s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease; }
-  .video-palco.ativo{ background: rgba(26, 36, 64, 0.74); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+  .video-palco{ position: fixed; inset: 0; z-index: 3000; display: flex; align-items: center; justify-content: center; background: rgba(26, 36, 64, 0); transition: background 0.4s ease; }
+  .video-palco.ativo{ background: rgba(20, 28, 52, 0.9); }
+  body.palco-aberto .cursor-play{ display: none !important; }
+  .palco-video iframe, .player-cartao{ backface-visibility: hidden; -webkit-backface-visibility: hidden; }
   .palco-video{ height: min(88vh, 780px); aspect-ratio: 9 / 16; max-width: 92vw; border-radius: 24px; overflow: hidden; background: #0b0d14; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); transition: transform 0.5s cubic-bezier(0.22, 0.8, 0.3, 1), opacity 0.4s ease; }
   .palco-video iframe{ width: 100%; height: 100%; border: 0; display: block; }
   .palco-fechar{ position: absolute; top: 16px; right: 16px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--branco); color: var(--azul-escuro); font-size: 1.1rem; font-weight: 800; cursor: pointer; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3); z-index: 2; }
@@ -1285,6 +1287,11 @@
     }, 2000);
   }
 
+  function semLegenda(iframe){
+    const cmd = (f, a) => { try{ iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: f, args: a || [] }), "*"); }catch(e){} };
+    cmd("unloadModule", ["captions"]); cmd("unloadModule", ["cc"]); cmd("setOption", ["captions", "track", {}]);
+  }
+
   function criarPlayerCartao(botao){
     const tela = botao.closest(".celular-tela");
     if(!tela || tela.querySelector("iframe")) return;
@@ -1301,6 +1308,7 @@
       ajustar();
       botao.classList.add("tem-player");
       try{ iframe.contentWindow.postMessage(JSON.stringify({ event: "listening", id: 1, channel: "widget" }), "*"); }catch(e){}
+      semLegenda(iframe);
     });
     let emFoco = false;
     window.addEventListener("message", (e) => {
@@ -1309,6 +1317,7 @@
       if(typeof d === "string"){ try{ d = JSON.parse(d); }catch(err){ return; } }
       if(!d) return;
       const estado = d.event === "onStateChange" ? d.info : (d.event === "infoDelivery" && d.info ? d.info.playerState : undefined);
+      if(estado === 1) semLegenda(iframe);
       if(estado === 1 && !emFoco){ emFoco = true; trazerParaFrente(tela, iframe, () => { emFoco = false; }); }
     });
   }
@@ -1335,8 +1344,8 @@
     document.body.appendChild(botaoX);
     document.body.classList.add("palco-aberto");
 
-    const w = Math.min(window.innerWidth * 0.92, window.innerHeight * 0.86 * 0.5625);
-    const h = w / 0.5625;
+    const w = Math.round(Math.min(window.innerWidth * 0.92, window.innerHeight * 0.86 * 0.5625));
+    const h = Math.round(w / 0.5625);
     tela.classList.add("tela-em-foco");
     Object.assign(tela.style, { position: "fixed", left: ((window.innerWidth - w) / 2) + "px", top: ((window.innerHeight - h) / 2) + "px", width: w + "px", height: h + "px", transition: "none", transform: "" });
     const alvo = tela.getBoundingClientRect();
@@ -1404,7 +1413,11 @@
     iframe.allowFullscreen = true;
     caixa.appendChild(iframe);
     const enviar = (func, args) => { try{ iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: func, args: args || [] }), "*"); }catch(e){} };
-    const ajustar = () => { const w = caixa.clientWidth; if(w > 0) iframe.style.transform = `scale(${w / 720})`; };
+    const ajustar = () => {
+      const h0 = Math.round(caixa.getBoundingClientRect().height);
+      if(h0 > 0 && !celular){ const w0 = Math.round(h0 * 9 / 16); caixa.style.width = w0 + "px"; caixa.style.height = h0 + "px"; }
+      const w = caixa.clientWidth; if(w > 0) iframe.style.transform = `scale(${w / 720})`;
+    };
     ajustar();
     let observador = null;
     if("ResizeObserver" in window){ observador = new ResizeObserver(ajustar); observador.observe(caixa); }
@@ -1425,6 +1438,7 @@
       let d = e.data;
       if(typeof d === "string"){ try{ d = JSON.parse(d); }catch(err){ return; } }
       if(!d || d.event !== "infoDelivery" || !d.info) return;
+      if(d.info.playerState === 1) semLegenda(iframe);
       if(typeof d.info.muted === "boolean") mudo = d.info.muted;
       if(celular && !tentouSom && d.info.playerState === 1){
         tentouSom = true;
@@ -1438,6 +1452,7 @@
     iframe.addEventListener("load", () => {
       caixa.classList.add("pronto");
       try{ iframe.contentWindow.postMessage(JSON.stringify({ event: "listening", id: 1, channel: "widget" }), "*"); }catch(e){}
+      semLegenda(iframe);
     });
 
     // Animacao: parte da posicao do cartao e cresce ate o centro.
