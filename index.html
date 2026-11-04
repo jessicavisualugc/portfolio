@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261104-c">
+<meta name="build" content="20261104-d">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -279,6 +279,10 @@
   .sobre-grid{ position: relative; z-index: 1; display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 72px; align-items: center; }
   .sobre-texto h2{ font-size: clamp(2.6rem, 6vw, 4.6rem); }
   .sobre-texto p{ font-size: 1.08rem; color: var(--tinta-suave); }
+  .sobre-texto h2{ font-size: clamp(1.4rem, 2.4vw, 1.9rem); }
+  .sobre-texto strong{ color: var(--marrom); font-weight: 700; }
+  .etiquetas{ list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .etiquetas li{ padding: 8px 16px; border: 1px solid var(--azul-medio); background: var(--rosa-claro); color: var(--azul-escuro); border-radius: 999px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em; }
   .promessas{ list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 10px; }
   .promessas li{
     display: flex;
@@ -782,8 +786,13 @@
         <div class="sobre-texto reveal">
           <h2 data-i18n="sobre_titulo">Sobre <span class="script">mim</span></h2>
           <p class="sobre-lead" data-i18n="sobre_lead"><span class="lead-l1">Oie,</span><span class="lead-l2">eu sou a <span class="letra-j">J</span>ess!</span></p>
-          <p data-i18n="sobre_p1">Há mais de 10 anos, estou nos bastidores do audiovisual como maquiadora e produtora. Hoje, uso esse olhar para criar UGC que parece vida real: natural, bonito e sem exageros, mostrando o produto do jeito que aparece no dia a dia de qualquer pessoa.</p>
-          <p data-i18n="sobre_p2">Já criei conteúdo para marcas de moda, saúde e bem-estar, gastronomia, beleza e experiências, sempre com vídeos que passam confiança e prendem a atenção de quem está assistindo. Vamos criar algo juntas? Me chama e conta sobre o seu produto!</p>
+          <p data-i18n="sobre_p1">Sou de <strong>São Paulo</strong> e, há mais de <strong>10 anos</strong>, estou nos bastidores do <strong>audiovisual</strong> como <strong>maquiadora e produtora</strong>. Hoje uso esse olhar para criar <strong>UGC que parece vida real</strong>: natural, bonito e sem exageros, mostrando o produto do jeito que aparece no dia a dia.</p>
+          <p data-i18n="sobre_p2">Gravo em <strong>casa</strong> e também na minha <strong>chácara</strong>, o que me dá cenários diferentes para cada produto. Crio conteúdo nos nichos de <strong>moda, saúde e bem-estar, gastronomia, beleza e experiências</strong>, com produtos do meu dia a dia.</p>
+          <ul class="etiquetas">
+            <li data-i18n="sobre_tag1">Maquiadora e produtora</li>
+            <li data-i18n="sobre_tag2">São Paulo · Brasil</li>
+            <li data-i18n="sobre_tag3">Casa e chácara</li>
+          </ul>
           <ul class="promessas">
             <li data-i18n="promessa1">Roteiro aprovado por você antes de gravar</li>
             <li data-i18n="promessa2">Uma rodada de ajustes inclusa no pacote</li>
@@ -1094,8 +1103,11 @@
       marcas_aria: "O que eu crio",
       sobre_titulo: 'Sobre <span class="script">mim</span>',
       sobre_lead: "<span class='lead-l1'>Oie,</span><span class='lead-l2'>eu sou a <span class='letra-j'>J</span>ess!</span>",
-      sobre_p1: "Há mais de 10 anos, estou nos bastidores do audiovisual como maquiadora e produtora. Hoje, uso esse olhar para criar UGC que parece vida real: natural, bonito e sem exageros, mostrando o produto do jeito que aparece no dia a dia de qualquer pessoa.",
-      sobre_p2: "Já criei conteúdo para marcas de moda, saúde e bem-estar, gastronomia, beleza e experiências, sempre com vídeos que passam confiança e prendem a atenção de quem está assistindo. Vamos criar algo juntas? Me chama e conta sobre o seu produto!",
+      sobre_p1: "Sou de <strong>São Paulo</strong> e, há mais de <strong>10 anos</strong>, estou nos bastidores do <strong>audiovisual</strong> como <strong>maquiadora e produtora</strong>. Hoje uso esse olhar para criar <strong>UGC que parece vida real</strong>: natural, bonito e sem exageros, mostrando o produto do jeito que aparece no dia a dia.",
+      sobre_p2: "Gravo em <strong>casa</strong> e também na minha <strong>chácara</strong>, o que me dá cenários diferentes para cada produto. Crio conteúdo nos nichos de <strong>moda, saúde e bem-estar, gastronomia, beleza e experiências</strong>, com produtos do meu dia a dia.",
+      sobre_tag1: "Maquiadora e produtora",
+      sobre_tag2: "São Paulo · Brasil",
+      sobre_tag3: "Casa e chácara",
       promessa1: "Roteiro aprovado por você antes de gravar",
       promessa2: "Uma rodada de ajustes inclusa no pacote",
       promessa3: "Conteúdo pronto em até 72 horas úteis após a aprovação",
@@ -1141,8 +1153,11 @@
       marcas_aria: "What I create",
       sobre_titulo: 'About <span class="script">me</span>',
       sobre_lead: "<span class='lead-l1'>Hi,</span><span class='lead-l2'>I am <span class='letra-j'>J</span>ess!</span>",
-      sobre_p1: "For more than 10 years I have been behind the scenes of audiovisual work as a makeup artist and producer. Today I use that eye to create UGC that feels like real life: natural, beautiful and never over the top, showing the product the way it shows up in anyone's everyday life.",
-      sobre_p2: "I have created content for fashion, health and wellness, gastronomy, beauty and experiences brands, always with videos that build trust and hold the attention of whoever is watching. Shall we create something together? Message me and tell me about your product!",
+      sobre_p1: "I am from <strong>São Paulo</strong> and, for more than <strong>10 years</strong>, I have been behind the scenes of <strong>audiovisual</strong> work as a <strong>makeup artist and producer</strong>. Today I use that eye to create <strong>UGC that feels like real life</strong>: natural, beautiful and never over the top, showing the product the way it shows up in everyday life.",
+      sobre_p2: "I shoot at <strong>home</strong> and also at my <strong>country house</strong>, which gives me different settings for each product. I create content in <strong>fashion, health and wellness, gastronomy, beauty and experiences</strong>, using products from my everyday life.",
+      sobre_tag1: "Makeup artist and producer",
+      sobre_tag2: "São Paulo · Brazil",
+      sobre_tag3: "Home and country house",
       promessa1: "Script approved by you before filming",
       promessa2: "One round of revisions included in the package",
       promessa3: "Content ready within 72 business hours after approval",
