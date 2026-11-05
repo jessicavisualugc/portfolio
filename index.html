@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261107-c">
+<meta name="build" content="20261107-d">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -26,6 +26,7 @@
 })();
 </script>
 <title>Jéssica Mendes | Portfólio UGC Creator</title>
+<link id="faviconLink" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23a8bde8'/%3E%3Ctext x='32' y='50' font-size='48' font-weight='700' font-family='Dancing Script,cursive' text-anchor='middle' fill='%236b4332'%3EJ%3C/text%3E%3C/svg%3E">
 <meta name="description" content="Portfólio de Jéssica Mendes, UGC Creator para marcas de moda, saúde e bem-estar, gastronomia, casa e deco, beleza e experiências. Vídeos e fotos autênticos sob consulta.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1910,6 +1911,34 @@
     window.addEventListener("resize", ajustarAltura);
   }
 
+  /* ==================== ICONE DA ABA ==================== */
+  // Desenha o icone (J marrom em uma bolinha azul) com a mesma letra cursiva do site, assim que a fonte carrega.
+  function criarFavicon(){
+    const desenhar = () => {
+      const c = document.createElement("canvas");
+      c.width = c.height = 256;
+      const x = c.getContext("2d");
+      if(!x) return;
+      x.fillStyle = "#a8bde8";
+      x.beginPath(); x.arc(128, 128, 126, 0, Math.PI * 2); x.fill();
+      x.fillStyle = "#6b4332"; x.strokeStyle = "#6b4332"; x.lineWidth = 7; x.lineJoin = "round";
+      x.font = '700 235px "Dancing Script"'; x.textAlign = "left";
+      const m = x.measureText("J");
+      const px = 128 - (m.actualBoundingBoxLeft + m.actualBoundingBoxRight) / 2 + m.actualBoundingBoxLeft;
+      const py = 128 - (m.actualBoundingBoxAscent + m.actualBoundingBoxDescent) / 2 + m.actualBoundingBoxAscent;
+      x.strokeText("J", px, py); x.fillText("J", px, py);
+      const url = c.toDataURL("image/png");
+      const l = document.getElementById("faviconLink");
+      if(l){ l.type = "image/png"; l.href = url; }
+      let a = document.querySelector('link[rel="apple-touch-icon"]');
+      if(!a){ a = document.createElement("link"); a.rel = "apple-touch-icon"; document.head.appendChild(a); }
+      a.href = url;
+    };
+    try{
+      if(document.fonts && document.fonts.load){ document.fonts.load('700 200px "Dancing Script"').then(desenhar).catch(() => {}); }
+    }catch(e){}
+  }
+
   /* ==================== CURSOR ==================== */
   function iniciarCursor(){
     if(!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
@@ -1955,6 +1984,7 @@
     iniciarFormulario();
     iniciarCaptura();
     iniciarCursor();
+    criarFavicon();
     iniciarAviso();
     document.getElementById("anoAtual").textContent = new Date().getFullYear();
   }
