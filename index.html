@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261107-i">
+<meta name="build" content="20261107-j">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -287,7 +287,8 @@
   /* Etiqueta de secao: -- NOME -- acima de cada titulo */
   .etiqueta{ display: flex; align-items: center; gap: 14px; margin: 0 0 14px; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--azul); line-height: 1; }
   .etiqueta::before, .etiqueta::after{ content: ""; flex: none; width: 40px; height: 1px; background: var(--azul); }
-  .sobre-texto > .etiqueta{ order: 0; }
+  section#sobre .sobre-texto > h2.etiqueta-sobre{ font-size: 0.74rem; font-weight: 600; gap: 14px; margin: 0 0 18px; }
+  .sobre-texto > .etiqueta{ order: 1; margin: 0 0 18px; font-family: inherit; line-height: 1; }
   .sobre-texto strong{ color: var(--marrom); font-weight: 700; }
   .etiquetas{ list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
   .etiquetas li{ padding: 8px 16px; border: 1px solid var(--azul-medio); background: var(--rosa-claro); color: var(--azul-escuro); border-radius: 999px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em; }
@@ -797,8 +798,7 @@
           <img class="foto-sobre-inteira" src="public/foto-sobre-4.jpg" alt="Jéssica Mendes sorrindo" data-i18n-alt="sobre_foto_alt" loading="lazy">
         </figure>
         <div class="sobre-texto reveal">
-          <p class="etiqueta" data-i18n="nav_sobre">Sobre</p>
-          <h2 data-i18n="sobre_titulo">Sobre <span class="script">mim</span></h2>
+          <h2 class="etiqueta etiqueta-sobre" data-i18n="sobre_etiqueta">Sobre mim</h2>
           <p class="sobre-lead" data-i18n="sobre_lead"><span class="lead-l1">Oie,</span><span class="lead-l2">eu sou a <span class="letra-j">J</span>ess!</span></p>
           <p data-i18n="sobre_p1">Sou de <strong>São Paulo</strong> e, há mais de <strong>10 anos</strong>, estou nos bastidores do <strong>audiovisual</strong> como <strong>maquiadora e produtora</strong>. Hoje uso esse olhar para criar <strong>UGC que parece vida real</strong>: natural, bonito e sem exageros, mostrando o produto do jeito que aparece no dia a dia.</p>
           <p data-i18n="sobre_p2">Gravo em <strong>casa</strong> e também na <strong>chácara da minha família</strong>, o que me dá cenários diferentes para cada produto. Crio vídeos de <strong>moda, saúde e bem-estar, gastronomia, casa e deco, beleza e experiências</strong>.</p>
@@ -874,7 +874,7 @@
         <div class="reveal">
           <p class="etiqueta" data-i18n="nav_contato">Contato</p>
           <h2 class="contato-titulo" data-i18n="contato_titulo">Bora criar algo <em><span class='letra-j-min'>j</span>untos</em>.</h2>
-          <p class="contato-sub" data-i18n="contato_sub">Me conta sobre o seu produto ou marca e o que você precisa. Me chama no WhatsApp ou por e-mail, respondo em até 24h.</p>
+          <p class="contato-sub" data-i18n="contato_sub">Me conta sobre o seu produto ou marca e o que você precisa. É só mandar um WhatsApp ou e-mail, respondo em até 24h.</p>
           <div class="contato-botoes">
             <a class="botao botao-primario" href="https://wa.me/5511989794275?text=Ol%C3%A1!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20sobre%20uma%20parceria." target="_blank" rel="noopener">WhatsApp (11) 98979-4275</a>
             <a class="botao botao-secundario" href="mailto:jessicamendes.ugc@gmail.com">jessicamendes.ugc@gmail.com</a>
@@ -1129,6 +1129,7 @@
       contato_foto_alt: "Jéssica Mendes sorrindo",
       marcas_aria: "O que eu crio",
       sobre_titulo: 'Sobre <span class="script">mim</span>',
+      sobre_etiqueta: "Sobre mim",
       sobre_lead: "<span class='lead-l1'>Oie,</span><span class='lead-l2'>eu sou a <span class='letra-j'>J</span>ess!</span>",
       sobre_p1: "Sou de <strong>São Paulo</strong> e, há mais de <strong>10 anos</strong>, estou nos bastidores do <strong>audiovisual</strong> como <strong>maquiadora e produtora</strong>. Hoje uso esse olhar para criar <strong>UGC que parece vida real</strong>: natural, bonito e sem exageros, mostrando o produto do jeito que aparece no dia a dia.",
       sobre_p2: "Gravo em <strong>casa</strong> e também na <strong>chácara da minha família</strong>, o que me dá cenários diferentes para cada produto. Crio vídeos de <strong>moda, saúde e bem-estar, gastronomia, casa e deco, beleza e experiências</strong>.",
@@ -1151,7 +1152,7 @@
       subtitulo_campanhas: "Resultados de campanha",
       subtitulo_depoimentos: "Depoimentos",
       contato_titulo: "Bora criar algo <em><span class='letra-j-min'>j</span>untos</em>.",
-      contato_sub: "Me conta sobre o seu produto ou marca e o que você precisa. Me chama no WhatsApp ou por e-mail, respondo em até 24h.",
+      contato_sub: "Me conta sobre o seu produto ou marca e o que você precisa. É só mandar um WhatsApp ou e-mail, respondo em até 24h.",
       label_nome: "Nome", label_email: "E-mail", label_mensagem: "Mensagem",
       botao_enviar: "Enviar mensagem",
       confirmacao: "Mensagem recebida! Em breve eu te respondo por e-mail ou WhatsApp.",
@@ -1179,6 +1180,7 @@
       contato_foto_alt: "Jéssica Mendes smiling",
       marcas_aria: "What I create",
       sobre_titulo: 'About <span class="script">me</span>',
+      sobre_etiqueta: "About me",
       sobre_lead: "<span class='lead-l1'>Hi,</span><span class='lead-l2'>I am <span class='letra-j'>J</span>ess!</span>",
       sobre_p1: "I am from <strong>São Paulo</strong> and, for more than <strong>10 years</strong>, I have been behind the scenes of <strong>audiovisual</strong> work as a <strong>makeup artist and producer</strong>. Today I use that eye to create <strong>UGC that feels like real life</strong>: natural, beautiful and never over the top, showing the product the way it shows up in everyday life.",
       sobre_p2: "I shoot at <strong>home</strong> and also at my <strong>family's country house</strong>, which gives me different settings for each product. I create videos in <strong>fashion, health and wellness, gastronomy, home and deco, beauty and experiences</strong>.",
@@ -1201,7 +1203,7 @@
       subtitulo_campanhas: "Campaign results",
       subtitulo_depoimentos: "Testimonials",
       contato_titulo: "Let's create something <em>together</em>.",
-      contato_sub: "Tell me about your product or brand and what you need. Message me on WhatsApp or by email, I reply within 24h.",
+      contato_sub: "Tell me about your product or brand and what you need. Just send a WhatsApp or an email, I reply within 24h.",
       label_nome: "Name", label_email: "Email", label_mensagem: "Message",
       botao_enviar: "Send message",
       confirmacao: "Message received! I will get back to you soon by email or WhatsApp.",
