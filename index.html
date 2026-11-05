@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261105-g">
+<meta name="build" content="20261106-a">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -378,6 +378,10 @@
   }
   .filtro-botao:hover{ background: var(--branco); }
   .filtro-botao.ativo{ background: var(--azul-escuro); color: var(--branco); }
+  .nicho-cab{ position: relative; z-index: 1; margin: -12px 0 32px; }
+  .nicho-cab[hidden]{ display: none; }
+  .nicho-titulo{ font-size: clamp(2rem, 4.4vw, 3rem); color: var(--marrom); margin: 0 0 6px; }
+  .nicho-frase{ font-family: "Fraunces", Georgia, serif; font-style: italic; font-size: 1.15rem; color: var(--tinta-suave); margin: 0; }
   .trabalhos-grid{ position: relative; z-index: 1; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 44px 28px; }
   .trabalho-card{ text-align: center; }
   .trabalho-info{ padding-top: 18px; }
@@ -818,6 +822,10 @@
           <p data-i18n="trabalhos_sub">Escolha um nicho e assista aos vídeos direto aqui no site.</p>
         </div>
         <div class="filtros" id="filtros" role="group" data-i18n-aria="filtros_aria" aria-label="Filtrar conteúdos por nicho"></div>
+        <div class="nicho-cab" id="nichoCab" hidden aria-live="polite">
+          <h3 class="nicho-titulo" id="nichoTitulo"></h3>
+          <p class="nicho-frase" id="nichoFrase"></p>
+        </div>
         <div class="trabalhos-grid" id="trabalhosGrid"></div>
       </div>
     </section>
@@ -971,11 +979,11 @@
       ],
       filtros: [
         { chave: "todos", rotulo: "Todos" },
-        { chave: "moda", rotulo: "Moda" },
-        { chave: "bemestar", rotulo: "Saúde & bem-estar" },
-        { chave: "gastronomia", rotulo: "Gastronomia" },
-        { chave: "beleza", rotulo: "Beleza" },
-        { chave: "experiencias", rotulo: "Experiências" }
+        { chave: "moda", rotulo: "Moda", frase: "Looks e achados para o dia a dia, do jeito que a gente usa de verdade." },
+        { chave: "bemestar", rotulo: "Saúde & bem-estar", frase: "Cuidar de si com leveza, sem complicação e sem exagero." },
+        { chave: "gastronomia", rotulo: "Gastronomia", frase: "Sabores do dia a dia, direto da minha cozinha para a sua tela." },
+        { chave: "beleza", rotulo: "Beleza", frase: "Beleza real, do jeito que eu uso e mostro na minha rotina." },
+        { chave: "experiencias", rotulo: "Experiências", frase: "Momentos para viver, curtir e contar do começo ao fim." }
       ],
 
       // Serviços (seção Como eu te ajudo)
@@ -1043,11 +1051,11 @@
       ],
       filtros: [
         { chave: "todos", rotulo: "All" },
-        { chave: "moda", rotulo: "Fashion" },
-        { chave: "bemestar", rotulo: "Health & wellness" },
-        { chave: "gastronomia", rotulo: "Gastronomy" },
-        { chave: "beleza", rotulo: "Beauty" },
-        { chave: "experiencias", rotulo: "Experiences" }
+        { chave: "moda", rotulo: "Fashion", frase: "Everyday looks and finds, the way people really wear them." },
+        { chave: "bemestar", rotulo: "Health & wellness", frase: "Taking care of yourself with ease, without the fuss." },
+        { chave: "gastronomia", rotulo: "Gastronomy", frase: "Everyday flavors, straight from my kitchen to your screen." },
+        { chave: "beleza", rotulo: "Beauty", frase: "Real beauty, the way I use it and show it in my routine." },
+        { chave: "experiencias", rotulo: "Experiences", frase: "Moments to live, enjoy and tell, from start to finish." }
       ],
       servicos: [
         { numero: "01", titulo: "UGC video", texto: "Authentic video filmed in my own style, ready for you to use in ads or on social media." },
@@ -1546,7 +1554,18 @@
     filtrarTrabalhos(ativo ? ativo.dataset.nicho : "todos");
   }
 
+  function atualizarNichoCab(nicho){
+    const cab = document.getElementById("nichoCab");
+    if(!cab) return;
+    const f = conteudo[idiomaAtual].filtros.find(x => x.chave === nicho);
+    if(!f || !f.frase){ cab.hidden = true; return; }
+    document.getElementById("nichoTitulo").textContent = f.rotulo;
+    document.getElementById("nichoFrase").textContent = f.frase;
+    cab.hidden = false;
+  }
+
   function filtrarTrabalhos(nicho){
+    atualizarNichoCab(nicho);
     document.querySelectorAll(".trabalho-card").forEach(card => {
       card.style.display = (nicho === "todos" || card.dataset.nicho === nicho) ? "" : "none";
     });
