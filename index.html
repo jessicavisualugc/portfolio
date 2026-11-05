@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261105-d">
+<meta name="build" content="20261105-e">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -1506,10 +1506,6 @@
     document.getElementById("destaquesGrid").innerHTML = c.destaques.map(d => `
       <article class="destaque-card ${classeReveal()}">
         ${htmlCelular(d, c.ui, d.titulo)}
-        <div class="destaque-info">
-          ${d.numero ? `<div class="destaque-numero">${d.numero}</div><div class="destaque-rotulo">${d.rotulo}</div>` : ""}
-          <p class="destaque-contexto">${d.contexto}</p>
-        </div>
       </article>
     `).join("");
   }
