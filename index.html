@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261105-f">
+<meta name="build" content="20261105-g">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -280,7 +280,8 @@
   .sobre-grid{ position: relative; z-index: 1; display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 72px; align-items: center; }
   .sobre-texto h2{ font-size: clamp(2.6rem, 6vw, 4.6rem); }
   .sobre-texto p{ font-size: 1.08rem; color: var(--tinta-suave); }
-  section#sobre .sobre-texto h2{ font-size: clamp(1.15rem, 1.8vw, 1.5rem); }
+  section#sobre .sobre-texto h2{ font-size: clamp(1.45rem, 2.3vw, 1.9rem); display: flex; align-items: center; gap: 16px; }
+  section#sobre .sobre-texto h2::before{ content: ""; flex: none; width: 46px; height: 2px; background: var(--marrom); }
   .sobre-texto strong{ color: var(--marrom); font-weight: 700; }
   .etiquetas{ list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
   .etiquetas li{ padding: 8px 16px; border: 1px solid var(--azul-medio); background: var(--rosa-claro); color: var(--azul-escuro); border-radius: 999px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em; }
