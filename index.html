@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261110-a">
+<meta name="build" content="20261110-b">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -285,10 +285,11 @@
   section#sobre .sobre-texto h2 .script{ font-size: 1.4em; line-height: 1; }
   section#sobre .sobre-texto h2::before{ content: none; }
   /* Etiqueta de secao: -- NOME -- acima de cada titulo */
-  .etiqueta{ display: flex; align-items: center; gap: 14px; margin: 0 0 14px; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--azul); line-height: 1; }
-  .etiqueta::before, .etiqueta::after{ content: ""; flex: none; width: 40px; height: 1px; background: var(--azul); }
-  section#sobre .sobre-texto > h2.etiqueta-sobre{ font-size: 0.74rem; font-weight: 600; gap: 14px; margin: 0 0 18px; }
-  .sobre-texto > .etiqueta{ order: 1; margin: 0 0 18px; font-family: inherit; line-height: 1; }
+  .etiqueta, .secao-cab p.etiqueta{ max-width: none; display: flex; align-items: center; gap: 12px; margin: 0 0 28px; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--azul); line-height: 1; }
+  .secao-cab p.etiqueta{ font-size: 0.62rem; margin: 0 0 28px; color: var(--azul); }
+  .etiqueta::before, .etiqueta::after{ content: ""; flex: none; width: 30px; height: 1px; background: var(--azul); }
+  section#sobre .sobre-texto > h2.etiqueta-sobre{ font-size: 0.62rem; font-weight: 600; gap: 12px; margin: 0 0 24px; }
+  .sobre-texto > .etiqueta{ order: 1; margin: 0 0 24px; font-family: inherit; line-height: 1; }
   .sobre-texto strong{ color: var(--marrom); font-weight: 700; }
   .etiquetas{ list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
   .etiquetas li{ padding: 8px 16px; border: 1px solid var(--azul-medio); background: var(--rosa-claro); color: var(--azul-escuro); border-radius: 999px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em; }
