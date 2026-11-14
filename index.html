@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261114-i">
+<meta name="build" content="20261114-j">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -1014,37 +1014,6 @@
     </div>
   </footer>
 
-  <!-- CARD DE CAPTURA DE MÍDIA KIT -->
-  <div class="captura-fundo" id="capturaFundo">
-    <div class="captura-modal" role="dialog" aria-labelledby="capturaTitulo">
-      <button class="captura-fechar" id="capturaFechar" data-i18n-aria="captura_fechar_aria" aria-label="Fechar">✕</button>
-      <div id="capturaConteudo">
-        <div class="captura-cab">
-          <span class="captura-foto" aria-hidden="true"></span>
-          <div>
-            <h3 id="capturaTitulo" data-i18n="captura_titulo">Qual é a sua ideia?</h3>
-            <p data-i18n="captura_texto">Me conta rapidinho o que você tem em mente. Respondo em até 24h.</p>
-          </div>
-        </div>
-        <form id="formCaptura" novalidate>
-          <div class="form-campo">
-            <label for="capturaNome" data-i18n="captura_label_nome">Seu nome ou marca</label>
-            <input type="text" id="capturaNome" name="nome" required autocomplete="name">
-          </div>
-          <div class="form-campo">
-            <label for="capturaProjeto" data-i18n="captura_label_projeto">Sua ideia (pode ser bem simples)</label>
-            <textarea id="capturaProjeto" name="projeto" rows="2" data-i18n-ph="captura_ph_projeto" placeholder="Ex.: um vídeo mostrando o produto no dia a dia"></textarea>
-          </div>
-          <button type="submit" class="botao botao-primario" style="width:100%;" data-i18n="captura_botao">Mandar no WhatsApp</button>
-        </form>
-      </div>
-      <div class="captura-obrigado" id="capturaObrigado">
-        <h3 data-i18n="captura_obrigado_titulo">Prontinho!</h3>
-        <p data-i18n="captura_obrigado_texto">Abri o WhatsApp com a sua mensagem pronta. É só enviar que eu respondo em até 24h.</p>
-      </div>
-    </div>
-  </div>
-
 <script>
 (function(){
   "use strict";
@@ -1900,6 +1869,8 @@
   }
 
   function iniciarCaptura(){
+    // O cartao da ideia foi removido do site; sem o elemento, nada a iniciar.
+    if(!document.getElementById("capturaFundo")) return;
     const fundo = document.getElementById("capturaFundo");
     const form = document.getElementById("formCaptura");
     const conteudoModal = document.getElementById("capturaConteudo");
