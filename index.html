@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261113-d">
+<meta name="build" content="20261114-a">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -764,6 +764,34 @@
   .palco-fechar-topo{ position: fixed; top: 16px; right: 16px; z-index: 3003; }
   .grid-foco{ pointer-events: none; }
   .grid-foco .tela-em-foco{ pointer-events: auto; }
+
+  /* ===== Fotos sem moldura: capa em tela cheia, sem bloco rosa, listras, estrelas ou pontos ===== */
+  .hero-foto-area.listrado{ background: #e9ddd3; }
+  .hero-foto-area .ponto, .hero-foto-area .estrela, .hero-painel .estrela{ display: none; }
+  .hero-foto-area{ display: block; padding: 0; overflow: hidden; }
+  .hero-foto-area .polaroid.moldura-capa{ position: absolute; inset: 0; width: auto; margin: 0; border-radius: 0; }
+  .hero-foto-area .polaroid.moldura-capa::before{ display: none; }
+  .hero-foto-area .polaroid.moldura-capa img{ position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; object-position: 50% 22%; border-radius: 0; box-shadow: none; }
+  @media (max-width: 900px){
+    .hero-foto-area{ order: -1; height: 560px; padding: 0; }
+  }
+  @media (max-width: 640px){
+    .hero-grid{ padding: 0 0 30px; }
+    .hero-foto-area{ grid-column: 1 / -1; grid-row: 1; height: 380px; margin: 0 0 20px; padding: 0; }
+    .hero-painel .hero-nichos{ flex-direction: row; align-items: center; flex-wrap: wrap; gap: 4px 12px; font-size: 1.02rem; }
+    .hero-nichos span::before{ content: none; }
+    .hero-nichos span + span::before{ content: "✱"; display: inline-block; width: auto; margin-right: 12px; }
+    .hero-kicker{ grid-row: 2; margin: 0 18px 12px; }
+    .hero-painel h1{ grid-row: 3; margin: 0 18px 14px; }
+    .hero-painel .hero-nichos{ grid-row: 4; margin: 0 18px; }
+    .hero-botoes{ grid-row: 5; margin: 24px 18px 22px; }
+    .hero-numeros{ grid-row: 6; margin: 0 18px; }
+    .hero-kicker, .hero-painel h1, .hero-painel .hero-nichos, .hero-botoes, .hero-numeros{ grid-column: 1 / -1; }
+    .hero-foto-area .polaroid.moldura-capa{ width: auto; }
+  }
+  /* Sobre mim: so cantos suaves e sombra leve, sem o bloco rosa */
+  .sobre-grid .polaroid.moldura-capa::before{ display: none; }
+  .sobre-grid .polaroid.moldura-capa img{ border-radius: 22px; box-shadow: 0 18px 40px rgba(107, 67, 50, 0.16); }
 </style>
 </head>
 <body>
