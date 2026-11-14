@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261113-a">
+<meta name="build" content="20261113-b">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -283,7 +283,6 @@
   .sobre-texto p{ font-size: 1.08rem; color: var(--tinta-suave); }
   section#sobre .sobre-texto h2{ font-size: clamp(1.45rem, 2.3vw, 1.9rem); display: flex; align-items: center; gap: 16px; }
   section#sobre .sobre-texto h2 .script{ font-size: 1.4em; line-height: 1; }
-  section#sobre .sobre-texto h2::before{ content: none; }
   /* Etiqueta de secao: -- NOME -- acima de cada titulo */
   .etiqueta, .secao-cab p.etiqueta{ max-width: none; display: flex; align-items: center; gap: 12px; margin: 0 0 28px; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--azul); line-height: 1; }
   .secao-cab p.etiqueta{ font-size: 0.62rem; margin: 0 0 28px; color: var(--azul); }
@@ -535,6 +534,32 @@
   .nav-toggle span{ background: var(--marrom); }
   .secao.listrado{ background: repeating-linear-gradient(90deg, #fdf5f7 0 38px, #eef2fa 38px 76px); }
 
+  /* Menu limpo: logo, links no centro, idioma e botao "Crie comigo" */
+  .nav-cta{ display: none; }
+  @media (min-width: 901px){
+    .nav-wrap{ max-width: 1280px; align-items: center; gap: 20px; }
+    .nav-centro{ flex: 1; display: flex; justify-content: center; }
+    .nav-links{ border-left: 0; gap: 2px; }
+    .nav-links li{ border-right: 0; }
+    .nav-links a{ padding: 10px 12px; font-weight: 600; font-size: 0.7rem; letter-spacing: 0.15em; border-radius: 6px; }
+    .nav-links a:hover{ background: transparent; color: var(--azul-escuro); }
+    .nav-logo{ padding-right: 0; }
+    .nav-actions{ align-items: center; gap: 14px; }
+    .lang-toggle{ padding: 3px; gap: 0; border: 1px solid rgba(107, 67, 50, 0.3); border-radius: 999px; }
+    .lang-btn{ border: 0; border-radius: 999px; padding: 6px 12px; font-weight: 700; }
+    .nav-cta{ display: inline-flex; align-items: center; height: 44px; padding: 0 22px; background: var(--marrom); color: var(--branco); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.02em; text-decoration: none; border-radius: 4px; white-space: nowrap; transition: background 0.15s ease, transform 0.15s ease; }
+    .nav-cta:hover{ background: var(--azul-escuro); transform: translateY(-1px); }
+  }
+  @media (min-width: 901px) and (max-width: 1140px){
+    .nav-links a{ padding: 10px 7px; font-size: 0.64rem; letter-spacing: 0.1em; }
+    .nav-cta{ padding: 0 14px; font-size: 0.74rem; }
+    .nav-logo{ font-size: 1.4rem; }
+  }
+  @media (max-width: 900px){
+    .nav-centro{ display: contents; }
+    .nav-actions{ align-items: center; gap: 8px; }
+  }
+
   /* Fotos de trabalho (serviços e contato) */
   .servicos-topo{ display: grid; grid-template-columns: 1fr 250px; gap: 48px; align-items: center; margin-bottom: 46px; position: relative; z-index: 1; }
   .servicos-topo .secao-cab{ margin: 0; }
@@ -725,21 +750,22 @@
   <header class="site-header">
     <div class="nav-wrap">
       <a href="#" class="nav-logo"><span class="letra-j">J</span>éssica Mendes</a>
+      <nav aria-label="Principal" class="nav-centro">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#sobre" data-i18n="nav_sobre">Sobre</a></li>
+          <li><a href="#destaques" data-i18n="nav_destaques">Destaques</a></li>
+          <li><a href="#trabalhos" data-i18n="nav_trabalhos">Conteúdos</a></li>
+          <li><a href="#servicos" data-i18n="nav_servicos">Serviços</a></li>
+          <li><a href="#processo" data-i18n="nav_processo">Como funciona</a></li>
+          <li><a href="#contato" data-i18n="nav_contato">Contato</a></li>
+        </ul>
+      </nav>
       <div class="nav-actions">
-        <nav aria-label="Principal">
-          <ul class="nav-links" id="navLinks">
-            <li><a href="#sobre" data-i18n="nav_sobre">Sobre</a></li>
-            <li><a href="#destaques" data-i18n="nav_destaques">Destaques</a></li>
-            <li><a href="#trabalhos" data-i18n="nav_trabalhos">Conteúdos</a></li>
-            <li><a href="#servicos" data-i18n="nav_servicos">Serviços</a></li>
-            <li><a href="#processo" data-i18n="nav_processo">Como funciona</a></li>
-            <li><a href="#contato" data-i18n="nav_contato">Contato</a></li>
-          </ul>
-        </nav>
         <div class="lang-toggle" id="langToggle" role="group" aria-label="Idioma do site / Site language">
           <button type="button" class="lang-btn ativo" data-lang="pt" aria-pressed="true">PT</button>
           <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
         </div>
+        <a class="nav-cta" href="#contato" data-i18n="nav_cta">Crie comigo</a>
         <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" data-i18n-aria="nav_toggle_aria" aria-label="Abrir menu">
           <span></span><span></span><span></span>
         </button>
@@ -758,8 +784,7 @@
           <h1><span><span class="letra-j">J</span>éssica</span><span>Mendes</span></h1>
           <p class="hero-frase hero-nichos" data-i18n="hero_frase"><span>Moda</span><span>Saúde &amp; bem-estar</span><span>Gastronomia</span><span>Casa &amp; Deco</span><span>Beleza</span><span>Experiências</span></p>
           <div class="hero-botoes">
-            <a class="botao botao-primario" href="https://wa.me/5511989794275?text=Ol%C3%A1!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20sobre%20uma%20parceria." target="_blank" rel="noopener" data-i18n="hero_botao_falar">Falar comigo</a>
-            <a class="botao botao-secundario" href="#trabalhos" data-i18n="hero_botao_ver">Ver os conteúdos</a>
+            <a class="botao botao-primario" href="https://wa.me/5511989794275?text=Ol%C3%A1!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20sobre%20uma%20parceria." target="_blank" rel="noopener" data-i18n="hero_botao_falar">Vamos conversar?</a>
           </div>
           <div class="hero-numeros">
             <div class="hero-numero">
@@ -1110,7 +1135,7 @@
       nav_servicos: "Serviços", nav_processo: "Como funciona", nav_contato: "Contato",
       nav_toggle_aria: "Abrir menu",
       hero_frase: "<span>Moda</span><span>Saúde &amp; bem-estar</span><span>Gastronomia</span><span>Casa &amp; Deco</span><span>Beleza</span><span>Experiências</span>",
-      hero_botao_falar: "Falar comigo", hero_botao_ver: "Ver os conteúdos",
+      hero_botao_falar: "Vamos conversar?", hero_botao_ver: "Ver os conteúdos", nav_cta: "Crie comigo",
       hero_num1_label: "anos de experiência no audiovisual", hero_num2_label: "prazo de entrega (úteis)", hero_num3_label: "rodada de ajuste inclusa",
       hero_foto_alt: "Jéssica Mendes, UGC Creator",
       sobre_foto_alt: "Jéssica Mendes sorrindo",
@@ -1161,7 +1186,7 @@
       nav_servicos: "Services", nav_processo: "How it works", nav_contato: "Contact",
       nav_toggle_aria: "Open menu",
       hero_frase: "<span>Fashion</span><span>Health &amp; wellness</span><span>Gastronomy</span><span>Home &amp; Deco</span><span>Beauty</span><span>Experiences</span>",
-      hero_botao_falar: "Talk to me", hero_botao_ver: "See my content",
+      hero_botao_falar: "Let's talk?", hero_botao_ver: "See my content", nav_cta: "Create with me",
       hero_num1_label: "years of experience in audiovisual", hero_num2_label: "delivery time (business)", hero_num3_label: "round of revisions included",
       hero_foto_alt: "Jéssica Mendes, UGC Creator",
       sobre_foto_alt: "Jéssica Mendes smiling",
