@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261114-b">
+<meta name="build" content="20261114-c">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -113,8 +113,9 @@
     transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
   }
   .botao:hover{ transform: translateY(-2px); }
-  .botao-primario{ background: var(--azul-escuro); color: var(--branco); }
-  .botao-primario:hover{ background: var(--azul-profundo); }
+  /* Regra dos botoes: marrom = acao principal (falar com a Jess); azul = secundario */
+  .botao-primario{ background: var(--marrom); border-color: var(--marrom); color: var(--branco); }
+  .botao-primario:hover{ background: #4e3023; border-color: #4e3023; }
   .botao-secundario{ background: transparent; color: var(--azul-escuro); }
   .botao-secundario:hover{ background: var(--azul-escuro); color: var(--branco); }
 
