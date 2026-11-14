@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261110-c">
+<meta name="build" content="20261113-a">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -721,14 +721,6 @@
 </style>
 </head>
 <body>
-
-  <div class="aviso-bf" id="avisoBF" hidden role="region" aria-label="Contagem regressiva para a Black Friday">
-    <span class="bf-selo" id="bfSelo">Black Friday</span>
-    <span class="bf-contagem" id="bfContagem"></span>
-    <span class="bf-texto" id="bfTexto"></span>
-    <a class="bf-botao" id="bfBotao" href="#contato"></a>
-    <button type="button" class="bf-fechar" id="bfFechar" aria-label="Fechar aviso">✕</button>
-  </div>
 
   <header class="site-header">
     <div class="nav-wrap">
@@ -1909,6 +1901,8 @@
   }
 
   function iniciarAviso(){
+    // Faixa da Black Friday removida do site: sem o elemento, nada a iniciar.
+    if(!document.getElementById("avisoBF")){ ajustarAltura(); return; }
     atualizarBlackFriday();
     document.getElementById("bfFechar").addEventListener("click", () => {
       try{ sessionStorage.setItem("avisoBFFechado", "1"); }catch(e){}
