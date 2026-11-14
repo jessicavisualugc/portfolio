@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261113-b">
+<meta name="build" content="20261113-c">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -455,10 +455,17 @@
   footer .ano{ margin: 32px 0 0; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.25); font-size: 0.78rem; color: rgba(255, 255, 255, 0.78); }
 
   /* CARD DE CAPTURA */
-  .captura-fundo{ position: fixed; inset: 0; background: rgba(38, 57, 107, 0.6); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
-  .captura-fundo.aberto{ display: flex; }
-  .captura-modal{ position: relative; width: 100%; max-width: 430px; background: #fbf8f2; border: 1.5px solid var(--azul-escuro); padding: 38px 32px 32px; box-shadow: 10px 10px 0 var(--azul-medio); }
-  .captura-fechar{ position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border: 1.5px solid var(--azul-escuro); background: transparent; cursor: pointer; font-size: 1rem; color: var(--azul-escuro); }
+  /* Cartao no canto da tela: nao cobre a pagina nem bloqueia a rolagem */
+  .captura-fundo{ position: fixed; right: 20px; bottom: 20px; display: none; z-index: 1200; pointer-events: none; width: 340px; max-width: calc(100vw - 24px); }
+  .captura-fundo.aberto{ display: block; animation: capturaEntra 0.45s ease both; }
+  @keyframes capturaEntra{ from{ opacity: 0; transform: translateY(18px); } to{ opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce){ .captura-fundo.aberto{ animation: none; } }
+  .captura-modal{ pointer-events: auto; position: relative; width: 100%; background: #fbf8f2; border: 1.5px solid var(--azul-escuro); padding: 18px 18px 16px; box-shadow: 6px 6px 0 var(--azul-medio); }
+  .captura-cab{ display: flex; gap: 12px; align-items: flex-start; padding-right: 26px; margin-bottom: 12px; }
+  .captura-foto{ flex: none; width: 52px; height: 52px; border-radius: 50%; object-fit: cover; object-position: 50% 18%; border: 2px solid var(--azul-medio); }
+  .captura-cab h3{ font-size: 1.25rem; margin: 2px 0 4px; line-height: 1.15; }
+  .captura-cab p{ font-size: 0.84rem; line-height: 1.4; margin: 0; }
+  .captura-fechar{ position: absolute; top: 8px; right: 8px; width: 26px; height: 26px; border: 1.5px solid var(--azul-escuro); background: transparent; cursor: pointer; font-size: 0.8rem; line-height: 1; color: var(--azul-escuro); }
   .captura-etiqueta{ display: inline-block; background: var(--azul-escuro); color: var(--branco); font-size: 0.64rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 12px; margin-bottom: 14px; }
   .captura-modal h3{ font-size: 1.8rem; margin-bottom: 8px; }
   .captura-modal p{ color: var(--tinta-suave); font-size: 0.95rem; }
@@ -644,10 +651,24 @@
   @media (max-width: 900px){ .nav-links{ top: calc(var(--nav-altura) + var(--aviso, 0px)); } }
   @media (max-width: 640px){ .aviso-bf{ font-size: 0.8rem; padding-right: 40px; } .bf-contagem strong{ font-size: 1.5rem; } }
   .captura-modal{ max-height: 92vh; overflow-y: auto; }
-  .captura-modal .form-campo{ margin-bottom: 14px; }
-  .captura-modal textarea{ min-height: 84px; }
+  .captura-modal .form-campo{ margin-bottom: 10px; }
+  .captura-modal .form-campo label{ font-size: 0.66rem; margin-bottom: 4px; }
+  .captura-modal input, .captura-modal textarea{ padding: 9px 11px; font-size: 0.9rem; }
+  .captura-modal textarea{ min-height: 58px; }
+  .captura-modal .botao{ padding: 12px 16px; font-size: 0.78rem; }
   .captura-nota{ margin: 12px 0 0; font-size: 0.78rem; text-align: center; color: var(--tinta-suave); }
-  .captura-modal h3{ font-size: 1.6rem; }
+  .captura-modal .captura-cab h3{ font-size: 1.25rem; }
+  @media (max-width: 640px){
+    .captura-fundo{ right: 12px; bottom: 12px; left: 12px; width: auto; max-width: none; }
+    .captura-modal{ padding: 14px 14px 12px; box-shadow: 4px 4px 0 var(--azul-medio); }
+    .captura-foto{ width: 40px; height: 40px; }
+    .captura-cab{ gap: 10px; margin-bottom: 8px; }
+    .captura-cab h3{ font-size: 1.1rem; }
+    .captura-cab p{ font-size: 0.78rem; }
+    .captura-modal .form-campo{ margin-bottom: 8px; }
+    .captura-modal textarea{ min-height: 44px; }
+    .captura-modal .botao{ padding: 10px 14px; }
+  }
   /* ===== Celular: capa compacta, texto primeiro e foto menor ao lado ===== */
   @media (max-width: 640px){
     .aviso-bf{ flex-wrap: nowrap; gap: 8px; padding: 7px 36px 7px 10px; }
@@ -936,35 +957,31 @@
 
   <!-- CARD DE CAPTURA DE MÍDIA KIT -->
   <div class="captura-fundo" id="capturaFundo">
-    <div class="captura-modal" role="dialog" aria-modal="true" aria-labelledby="capturaTitulo">
+    <div class="captura-modal" role="dialog" aria-labelledby="capturaTitulo">
       <button class="captura-fechar" id="capturaFechar" data-i18n-aria="captura_fechar_aria" aria-label="Fechar">✕</button>
-      <span class="captura-etiqueta" data-i18n="captura_etiqueta">Vamos conversar?</span>
       <div id="capturaConteudo">
-        <h3 id="capturaTitulo" data-i18n="captura_titulo">Qual é a sua ideia?</h3>
-        <p data-i18n="captura_texto">Me conta sobre o seu produto e o que você imagina, que eu te envio ideias personalizadas para a sua marca.</p>
+        <div class="captura-cab">
+          <img class="captura-foto" src="public/foto-sobre-4.jpg" alt="" width="52" height="52">
+          <div>
+            <h3 id="capturaTitulo" data-i18n="captura_titulo">Qual é a sua ideia?</h3>
+            <p data-i18n="captura_texto">Me conta rapidinho o que você tem em mente. Respondo em até 24h.</p>
+          </div>
+        </div>
         <form id="formCaptura" novalidate>
           <div class="form-campo">
-            <label for="capturaNome" data-i18n="captura_label_nome">Seu nome</label>
+            <label for="capturaNome" data-i18n="captura_label_nome">Seu nome ou marca</label>
             <input type="text" id="capturaNome" name="nome" required autocomplete="name">
           </div>
           <div class="form-campo">
-            <label for="capturaTel" data-i18n="captura_label_tel">WhatsApp / telefone (com DDD)</label>
-            <input type="tel" id="capturaTel" name="telefone" required autocomplete="tel" inputmode="tel" placeholder="(00) 00000-0000">
+            <label for="capturaProjeto" data-i18n="captura_label_projeto">Sua ideia (pode ser bem simples)</label>
+            <textarea id="capturaProjeto" name="projeto" rows="2" data-i18n-ph="captura_ph_projeto" placeholder="Ex.: um vídeo mostrando o produto no dia a dia"></textarea>
           </div>
-          <div class="form-campo">
-            <label for="capturaEmail" data-i18n="captura_label_email">E-mail</label>
-            <input type="email" id="capturaEmail" name="email" required autocomplete="email">
-          </div>
-          <div class="form-campo">
-            <label for="capturaProjeto" data-i18n="captura_label_projeto">Conte sobre o seu projeto</label>
-            <textarea id="capturaProjeto" name="projeto" rows="3" required data-i18n-ph="captura_ph_projeto" placeholder="Qual é o seu produto? Que tipo de conteúdo você imagina?"></textarea>
-          </div>
-          <button type="submit" class="botao botao-primario" style="width:100%;" data-i18n="captura_botao">Quero receber</button>
+          <button type="submit" class="botao botao-primario" style="width:100%;" data-i18n="captura_botao">Mandar no WhatsApp</button>
         </form>
       </div>
       <div class="captura-obrigado" id="capturaObrigado">
         <h3 data-i18n="captura_obrigado_titulo">Prontinho!</h3>
-        <p data-i18n="captura_obrigado_texto">Abri o WhatsApp com a sua mensagem pronta. É só enviar que eu te respondo com ideias para a sua marca.</p>
+        <p data-i18n="captura_obrigado_texto">Abri o WhatsApp com a sua mensagem pronta. É só enviar que eu respondo em até 24h.</p>
       </div>
     </div>
   </div>
@@ -1175,11 +1192,11 @@
       captura_fechar_aria: "Fechar",
       captura_etiqueta: "Vamos conversar?",
       captura_titulo: "Qual é a sua ideia?",
-      captura_texto: "Me conta sobre o seu produto e o que você imagina, que eu te envio ideias personalizadas para a sua marca.",
-      captura_label_nome: "Seu nome", captura_label_email: "E-mail", captura_label_tel: "WhatsApp / telefone (com DDD)", captura_label_projeto: "Conte sobre o seu projeto", captura_ph_projeto: "Qual é o seu produto? Que tipo de conteúdo você imagina?",
-      captura_botao: "Quero receber",
+      captura_texto: "Me conta rapidinho o que você tem em mente. Respondo em até 24h.",
+      captura_label_nome: "Seu nome ou marca", captura_label_projeto: "Sua ideia (pode ser bem simples)", captura_ph_projeto: "Ex.: um vídeo mostrando o produto no dia a dia",
+      captura_botao: "Mandar no WhatsApp",
       captura_obrigado_titulo: "Prontinho!",
-      captura_obrigado_texto: "Abri o WhatsApp com a sua mensagem pronta. É só enviar que eu te respondo com ideias para a sua marca."
+      captura_obrigado_texto: "Abri o WhatsApp com a sua mensagem pronta. É só enviar que eu respondo em até 24h."
     },
     en: {
       nav_sobre: "About", nav_destaques: "Highlights", nav_trabalhos: "Content",
@@ -1226,11 +1243,11 @@
       captura_fechar_aria: "Close",
       captura_etiqueta: "Let's talk?",
       captura_titulo: "What is your idea?",
-      captura_texto: "Tell me about your product and what you have in mind, and I will send you personalized ideas for your brand.",
-      captura_label_nome: "Your name", captura_label_email: "Email", captura_label_tel: "WhatsApp / phone (with area code)", captura_label_projeto: "Tell me about your project", captura_ph_projeto: "What is your product? What kind of content do you imagine?",
-      captura_botao: "Send it to me",
+      captura_texto: "Tell me quickly what you have in mind. I reply within 24h.",
+      captura_label_nome: "Your name or brand", captura_label_projeto: "Your idea (it can be very simple)", captura_ph_projeto: "E.g.: a video showing the product in everyday life",
+      captura_botao: "Send on WhatsApp",
       captura_obrigado_titulo: "All set!",
-      captura_obrigado_texto: "I opened WhatsApp with your message ready. Just send it and I will reply with ideas for your brand."
+      captura_obrigado_texto: "I opened WhatsApp with your message ready. Just send it and I reply within 24h."
     }
   };
 
@@ -1825,30 +1842,29 @@
       if(guardado()) return;
       fundo.classList.add("aberto");
       guardar();
-      document.getElementById("capturaNome").focus();
     }
     function fechar(){ fundo.classList.remove("aberto"); }
 
-    const tel = document.getElementById("capturaTel");
-    tel.addEventListener("input", () => {
-      const d = tel.value.replace(/\D/g, "").slice(0, 11);
-      let t = d;
-      if(d.length > 2) t = `(${d.slice(0, 2)}) ${d.slice(2, d.length > 10 ? 7 : 6)}${d.length > (d.length > 10 ? 7 : 6) ? "-" + d.slice(d.length > 10 ? 7 : 6) : ""}`;
-      else if(d.length > 0) t = `(${d}`;
-      tel.value = t;
-    });
-    setTimeout(abrir, 7000);
+    // So aparece depois que a pessoa ja viu boa parte do portfolio (rolou mais da metade da pagina).
+    function verificarRolagem(){
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      if(total > 0 && window.scrollY / total >= 0.55){
+        window.removeEventListener("scroll", verificarRolagem);
+        abrir();
+      }
+    }
+    if(!guardado()) window.addEventListener("scroll", verificarRolagem, { passive: true });
     document.getElementById("capturaFechar").addEventListener("click", fechar);
-    fundo.addEventListener("click", (ev) => { if(ev.target === fundo) fechar(); });
     document.addEventListener("keydown", (ev) => { if(ev.key === "Escape" && fundo.classList.contains("aberto")) fechar(); });
 
     form.addEventListener("submit", (ev) => {
       ev.preventDefault();
       if(!form.checkValidity()){ form.reportValidity(); return; }
       const v = (id) => document.getElementById(id).value.trim();
+      const ideia = v("capturaProjeto");
       const msg = idiomaAtual === "en"
-        ? `Hi Jessica! I am ${v("capturaNome")}. I saw your portfolio and would like UGC content. About my project: ${v("capturaProjeto")}. My WhatsApp: ${v("capturaTel")}. Email: ${v("capturaEmail")}.`
-        : `Oi Jéssica! Sou ${v("capturaNome")}. Vi seu portfólio e quero criar conteúdo UGC. Sobre o meu projeto: ${v("capturaProjeto")}. Meu WhatsApp: ${v("capturaTel")}. E-mail: ${v("capturaEmail")}.`;
+        ? `Hi Jessica! I am ${v("capturaNome")}. I saw your portfolio and would like UGC content.${ideia ? " My idea: " + ideia : ""}`
+        : `Oi Jéssica! Sou ${v("capturaNome")}. Vi seu portfólio e quero criar conteúdo UGC.${ideia ? " Minha ideia: " + ideia : ""}`;
       window.open(`${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
       conteudoModal.style.display = "none";
       obrigado.classList.add("visivel");
