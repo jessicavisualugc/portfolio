@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261113-c">
+<meta name="build" content="20261113-d">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -462,7 +462,7 @@
   @media (prefers-reduced-motion: reduce){ .captura-fundo.aberto{ animation: none; } }
   .captura-modal{ pointer-events: auto; position: relative; width: 100%; background: #fbf8f2; border: 1.5px solid var(--azul-escuro); padding: 18px 18px 16px; box-shadow: 6px 6px 0 var(--azul-medio); }
   .captura-cab{ display: flex; gap: 12px; align-items: flex-start; padding-right: 26px; margin-bottom: 12px; }
-  .captura-foto{ flex: none; width: 52px; height: 52px; border-radius: 50%; object-fit: cover; object-position: 50% 18%; border: 2px solid var(--azul-medio); }
+  .captura-foto{ flex: none; display: block; width: 52px; height: 52px; border-radius: 50%; background: #e8dfd6 url("public/foto-capa.jpg") no-repeat; background-size: 150% auto; background-position: 50% 12%; border: 2px solid var(--azul-medio); }
   .captura-cab h3{ font-size: 1.25rem; margin: 2px 0 4px; line-height: 1.15; }
   .captura-cab p{ font-size: 0.84rem; line-height: 1.4; margin: 0; }
   .captura-fechar{ position: absolute; top: 8px; right: 8px; width: 26px; height: 26px; border: 1.5px solid var(--azul-escuro); background: transparent; cursor: pointer; font-size: 0.8rem; line-height: 1; color: var(--azul-escuro); }
@@ -961,7 +961,7 @@
       <button class="captura-fechar" id="capturaFechar" data-i18n-aria="captura_fechar_aria" aria-label="Fechar">✕</button>
       <div id="capturaConteudo">
         <div class="captura-cab">
-          <img class="captura-foto" src="public/foto-sobre-4.jpg" alt="" width="52" height="52">
+          <span class="captura-foto" aria-hidden="true"></span>
           <div>
             <h3 id="capturaTitulo" data-i18n="captura_titulo">Qual é a sua ideia?</h3>
             <p data-i18n="captura_texto">Me conta rapidinho o que você tem em mente. Respondo em até 24h.</p>
