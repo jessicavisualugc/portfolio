@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261114-k">
+<meta name="build" content="20261114-l">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -805,6 +805,14 @@
   @media (min-width: 901px){ .nav-links a{ white-space: nowrap; } }
   @media (min-width: 901px) and (max-width: 1140px){ .nav-links a{ font-size: 0.72rem; letter-spacing: 0.05em; padding: 10px 6px; } }
   @media (min-width: 901px) and (max-width: 1040px){ .nav-cta{ display: none; } }
+  /* ===== Formas: cantos suaves em tudo (cartoes 20px, campos 12px, botoes 12px, filtros em pilula) ===== */
+  .servico-card{ border-radius: 20px; border-color: rgba(54, 84, 143, 0.4); }
+  .servico-card:hover{ box-shadow: 0 18px 38px rgba(107, 67, 50, 0.14); }
+  .form-card{ border-radius: 22px; border-color: rgba(54, 84, 143, 0.4); box-shadow: 0 22px 46px rgba(107, 67, 50, 0.12); }
+  .form-campo input, .form-campo textarea{ border-radius: 12px; }
+  .form-confirmacao{ border-radius: 12px; }
+  .botao, .nav-cta{ border-radius: 12px; }
+  .filtro-botao{ border-radius: 999px; }
   /* Contato: lista com icones + formulario que abre o WhatsApp */
   .contato-lista{ list-style: none; margin: 30px 0 0; padding: 0; display: grid; gap: 14px; }
   .contato-item{ display: flex; align-items: center; gap: 14px; color: var(--tinta); text-decoration: none; font-size: 1rem; font-weight: 500; transition: color 0.15s ease; word-break: break-word; }
@@ -1029,15 +1037,15 @@
       // Trabalhos por nicho. "nicho" precisa bater com uma "chave" de filtros.
       // Com "video" preenchido (ID do YouTube), o vídeo toca dentro do celular, no próprio site.
       trabalhos: [
+        { marca: "Garlic", nicho: "gastronomia", novo: false, video: "tXJ2VzRaKY4", capa: "https://i.ytimg.com/vi/tXJ2VzRaKY4/oar1.jpg" },
+        { marca: "Mundoflex", nicho: "bemestar", novo: false, video: "iwIwYsA58bQ", capa: "https://i.ytimg.com/vi/iwIwYsA58bQ/oar2.jpg" },
+        { marca: "Coperalcool", nicho: "casa", novo: false, video: "RlpBP8UaaWM", capa: "https://i.ytimg.com/vi/RlpBP8UaaWM/oar3.jpg" },
         { marca: "Aurora", nicho: "moda", novo: false, video: "L53gM7D-C8Q", capa: "https://i.ytimg.com/vi/L53gM7D-C8Q/oardefault.jpg" },
         { marca: "Aurora", nicho: "moda", novo: false, video: "MH7tBeV1RjA", capa: "https://i.ytimg.com/vi/MH7tBeV1RjA/oardefault.jpg" },
-        { marca: "Mundoflex", nicho: "bemestar", novo: false, video: "iwIwYsA58bQ", capa: "https://i.ytimg.com/vi/iwIwYsA58bQ/oar2.jpg" },
         { marca: "Soldiers", nicho: "bemestar", novo: false, video: "29DeDnda3C4", capa: "https://i.ytimg.com/vi/29DeDnda3C4/oar3.jpg" },
         { marca: "True Source", nicho: "bemestar", novo: false, video: "34-Ib0X9jdY", capa: "https://i.ytimg.com/vi/34-Ib0X9jdY/oardefault.jpg" },
-        { marca: "Garlic", nicho: "gastronomia", novo: false, video: "tXJ2VzRaKY4", capa: "https://i.ytimg.com/vi/tXJ2VzRaKY4/oar1.jpg" },
         { marca: "Natural One", nicho: "gastronomia", novo: false, video: "pF7tPb0dids", capa: "https://i.ytimg.com/vi/pF7tPb0dids/oardefault.jpg" },
         { marca: "Leão", nicho: "gastronomia", novo: false, video: "5NScq6MnT_M", capa: "https://i.ytimg.com/vi/5NScq6MnT_M/oar1.jpg" },
-        { marca: "Coperalcool", nicho: "casa", novo: false, video: "RlpBP8UaaWM", capa: "https://i.ytimg.com/vi/RlpBP8UaaWM/oar3.jpg" },
         { marca: "Unitermi", nicho: "casa", novo: false, video: "-PWv1B_oGqU", capa: "https://i.ytimg.com/vi/-PWv1B_oGqU/oar2.jpg" },
         { marca: "Braé", nicho: "beleza", novo: false, video: "sICc1gel7mE", capa: "https://i.ytimg.com/vi/sICc1gel7mE/oar3.jpg" },
         { marca: "Dance Glow", nicho: "experiencias", novo: false, video: "TEghqGwzSX4", capa: "https://i.ytimg.com/vi/TEghqGwzSX4/oar1.jpg" }
@@ -1103,15 +1111,15 @@
         { titulo: "Featured video 03", tema: "Home & Deco", marca: "Coperalcool", contexto: "Content showing the product in everyday home life, with naturalness.", video: "RlpBP8UaaWM", capa: "https://i.ytimg.com/vi/RlpBP8UaaWM/oar3.jpg", numero: "", rotulo: "", novo: false }
       ],
       trabalhos: [
+        { marca: "Garlic", nicho: "gastronomia", novo: false, video: "tXJ2VzRaKY4", capa: "https://i.ytimg.com/vi/tXJ2VzRaKY4/oar1.jpg" },
+        { marca: "Mundoflex", nicho: "bemestar", novo: false, video: "iwIwYsA58bQ", capa: "https://i.ytimg.com/vi/iwIwYsA58bQ/oar2.jpg" },
+        { marca: "Coperalcool", nicho: "casa", novo: false, video: "RlpBP8UaaWM", capa: "https://i.ytimg.com/vi/RlpBP8UaaWM/oar3.jpg" },
         { marca: "Aurora", nicho: "moda", novo: false, video: "L53gM7D-C8Q", capa: "https://i.ytimg.com/vi/L53gM7D-C8Q/oardefault.jpg" },
         { marca: "Aurora", nicho: "moda", novo: false, video: "MH7tBeV1RjA", capa: "https://i.ytimg.com/vi/MH7tBeV1RjA/oardefault.jpg" },
-        { marca: "Mundoflex", nicho: "bemestar", novo: false, video: "iwIwYsA58bQ", capa: "https://i.ytimg.com/vi/iwIwYsA58bQ/oar2.jpg" },
         { marca: "Soldiers", nicho: "bemestar", novo: false, video: "29DeDnda3C4", capa: "https://i.ytimg.com/vi/29DeDnda3C4/oar3.jpg" },
         { marca: "True Source", nicho: "bemestar", novo: false, video: "34-Ib0X9jdY", capa: "https://i.ytimg.com/vi/34-Ib0X9jdY/oardefault.jpg" },
-        { marca: "Garlic", nicho: "gastronomia", novo: false, video: "tXJ2VzRaKY4", capa: "https://i.ytimg.com/vi/tXJ2VzRaKY4/oar1.jpg" },
         { marca: "Natural One", nicho: "gastronomia", novo: false, video: "pF7tPb0dids", capa: "https://i.ytimg.com/vi/pF7tPb0dids/oardefault.jpg" },
         { marca: "Leão", nicho: "gastronomia", novo: false, video: "5NScq6MnT_M", capa: "https://i.ytimg.com/vi/5NScq6MnT_M/oar1.jpg" },
-        { marca: "Coperalcool", nicho: "casa", novo: false, video: "RlpBP8UaaWM", capa: "https://i.ytimg.com/vi/RlpBP8UaaWM/oar3.jpg" },
         { marca: "Unitermi", nicho: "casa", novo: false, video: "-PWv1B_oGqU", capa: "https://i.ytimg.com/vi/-PWv1B_oGqU/oar2.jpg" },
         { marca: "Braé", nicho: "beleza", novo: false, video: "sICc1gel7mE", capa: "https://i.ytimg.com/vi/sICc1gel7mE/oar3.jpg" },
         { marca: "Dance Glow", nicho: "experiencias", novo: false, video: "TEghqGwzSX4", capa: "https://i.ytimg.com/vi/TEghqGwzSX4/oar1.jpg" }
