@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261114-e">
+<meta name="build" content="20261114-f">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -989,8 +989,8 @@
             <input type="text" id="campoMarca" name="marca" required autocomplete="organization">
           </div>
           <div class="form-campo">
-            <label for="campoMensagem" data-i18n="label_projeto_contato">Conta sobre o projeto</label>
-            <textarea id="campoMensagem" name="mensagem" rows="5" data-i18n-ph="ph_projeto_contato" placeholder="Produto, tipo de vídeo, prazo, o que você imagina..."></textarea>
+            <label for="campoMensagem" data-i18n="label_projeto_contato">Fala um pouco do seu negócio</label>
+            <textarea id="campoMensagem" name="mensagem" rows="5" data-i18n-ph="ph_projeto_contato" placeholder="O que você vende ou faz, quem é o seu público e o tipo de vídeo que imagina..."></textarea>
           </div>
           <button type="submit" class="botao botao-primario" data-i18n="botao_enviar">Enviar mensagem</button>
           <div class="form-confirmacao" id="formConfirmacao" role="status" data-i18n="confirmacao">Prontinho! Abri o WhatsApp com a sua mensagem pronta. É só enviar que eu respondo em até 24h.</div>
@@ -1244,8 +1244,8 @@
       contato_titulo: "Bora criar algo <em><span class='letra-j-min'>j</span>untos</em>?",
       contato_sub: "Me conta sobre o seu produto ou marca e o que você precisa. É só mandar um WhatsApp ou e-mail, respondo em até 24h.",
       label_nome: "Nome", label_email: "E-mail (opcional)", label_mensagem: "Mensagem",
-      label_marca: "Marca / empresa", label_projeto_contato: "Conta sobre o projeto",
-      ph_projeto_contato: "Produto, tipo de vídeo, prazo, o que você imagina...",
+      label_marca: "Marca / empresa", label_projeto_contato: "Fala um pouco do seu negócio",
+      ph_projeto_contato: "O que você vende ou faz, quem é o seu público e o tipo de vídeo que imagina...",
       botao_enviar: "Enviar mensagem",
       confirmacao: "Prontinho! Abri o WhatsApp com a sua mensagem pronta. É só enviar que eu respondo em até 24h.",
       footer_email: "E-mail",
@@ -1297,8 +1297,8 @@
       contato_titulo: "Let's create something <em>together</em>?",
       contato_sub: "Tell me about your product or brand and what you need. Just send a WhatsApp or an email, I reply within 24h.",
       label_nome: "Name", label_email: "Email (optional)", label_mensagem: "Message",
-      label_marca: "Brand / company", label_projeto_contato: "Tell me about the project",
-      ph_projeto_contato: "Product, type of video, deadline, what you have in mind...",
+      label_marca: "Brand / company", label_projeto_contato: "Tell me a bit about your business",
+      ph_projeto_contato: "What you sell or do, who your audience is and the kind of video you imagine...",
       botao_enviar: "Send message",
       confirmacao: "All set! I opened WhatsApp with your message ready. Just send it and I reply within 24h.",
       footer_email: "Email",
@@ -1891,8 +1891,8 @@
       const v = (id) => document.getElementById(id).value.trim();
       const projeto = v("campoMensagem"), email = v("campoEmail");
       const msg = idiomaAtual === "en"
-        ? `Hi Jessica! I am ${v("campoNome")}, from ${v("campoMarca")}. I saw your portfolio and would like UGC content.${projeto ? " About the project: " + projeto : ""}${email ? " My email: " + email : ""}`
-        : `Oi Jéssica! Sou ${v("campoNome")}, da marca ${v("campoMarca")}. Vi seu portfólio e quero criar conteúdo UGC.${projeto ? " Sobre o projeto: " + projeto : ""}${email ? " Meu e-mail: " + email : ""}`;
+        ? `Hi Jessica! I am ${v("campoNome")}, from ${v("campoMarca")}. I saw your portfolio and would like UGC content.${projeto ? " About my business: " + projeto : ""}${email ? " My email: " + email : ""}`
+        : `Oi Jéssica! Sou ${v("campoNome")}, da marca ${v("campoMarca")}. Vi seu portfólio e quero criar conteúdo UGC.${projeto ? " Sobre o meu negócio: " + projeto : ""}${email ? " Meu e-mail: " + email : ""}`;
       window.open(`${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
       confirmacao.classList.add("visivel");
       form.reset();
