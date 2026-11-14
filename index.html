@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261114-c">
+<meta name="build" content="20261114-d">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -805,6 +805,15 @@
   @media (min-width: 901px){ .nav-links a{ white-space: nowrap; } }
   @media (min-width: 901px) and (max-width: 1140px){ .nav-links a{ font-size: 0.72rem; letter-spacing: 0.05em; padding: 10px 6px; } }
   @media (min-width: 901px) and (max-width: 1040px){ .nav-cta{ display: none; } }
+  /* Contato: lista com icones + formulario que abre o WhatsApp */
+  .contato-lista{ list-style: none; margin: 30px 0 0; padding: 0; display: grid; gap: 14px; }
+  .contato-item{ display: flex; align-items: center; gap: 14px; color: var(--tinta); text-decoration: none; font-size: 1rem; font-weight: 500; transition: color 0.15s ease; word-break: break-word; }
+  .contato-item:hover{ color: var(--azul-escuro); }
+  .contato-icone{ flex: none; width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid rgba(107, 67, 50, 0.35); background: var(--branco); display: inline-flex; align-items: center; justify-content: center; color: var(--marrom); transition: border-color 0.15s ease, background 0.15s ease; }
+  .contato-icone svg{ width: 20px; height: 20px; }
+  .contato-item:hover .contato-icone{ border-color: var(--azul-escuro); background: var(--ceu); }
+  .form-linha{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 640px){ .form-linha{ grid-template-columns: 1fr; gap: 0; } }
   /* Sobre mim: so cantos suaves e sombra leve, sem o bloco rosa */
   .sobre-grid .polaroid.moldura-capa::before{ display: none; }
   .sobre-grid .polaroid.moldura-capa img{ border-radius: 22px; box-shadow: 0 18px 40px rgba(107, 67, 50, 0.16); }
@@ -958,27 +967,33 @@
           <p class="etiqueta" data-i18n="nav_contato">Contato</p>
           <h2 class="contato-titulo" data-i18n="contato_titulo">Bora criar algo <em><span class='letra-j-min'>j</span>untos</em>.</h2>
           <p class="contato-sub" data-i18n="contato_sub">Me conta sobre o seu produto ou marca e o que você precisa. É só mandar um WhatsApp ou e-mail, respondo em até 24h.</p>
-          <div class="contato-botoes">
-            <a class="botao botao-primario" href="https://wa.me/5511989794275?text=Ol%C3%A1!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20sobre%20uma%20parceria." target="_blank" rel="noopener">WhatsApp (11) 98979-4275</a>
-            <a class="botao botao-secundario" href="mailto:jessicamendes.ugc@gmail.com">jessicamendes.ugc@gmail.com</a>
-            <a class="botao botao-secundario" href="https://instagram.com/jessicavisual.ugc" target="_blank" rel="noopener">Instagram @jessicavisual.ugc</a>
-          </div>
+          <ul class="contato-lista">
+            <li><a class="contato-item" href="mailto:jessicamendes.ugc@gmail.com"><span class="contato-icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span>jessicamendes.ugc@gmail.com</span></a></li>
+            <li><a class="contato-item" href="https://instagram.com/jessicavisual.ugc" target="_blank" rel="noopener"><span class="contato-icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></span><span>@jessicavisual.ugc</span></a></li>
+            <li><a class="contato-item" href="https://wa.me/5511989794275?text=Ol%C3%A1!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20sobre%20uma%20parceria." target="_blank" rel="noopener"><span class="contato-icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M9 9.5c.4 2 2.5 4.1 4.5 4.5l1.2-1.2 2 1-.5 1.2c-.5.8-1.6 1-2.8.6-3-1-5.2-3.3-6-6-.3-1 .2-2 .9-2.5l1.1.9Z"/></svg></span><span>(11) 98979-4275</span></a></li>
+          </ul>
         </div>
         <form id="formContato" class="form-card reveal" novalidate>
-          <div class="form-campo">
-            <label for="campoNome" data-i18n="label_nome">Nome</label>
-            <input type="text" id="campoNome" name="nome" required autocomplete="name">
+          <div class="form-linha">
+            <div class="form-campo">
+              <label for="campoNome" data-i18n="label_nome">Nome</label>
+              <input type="text" id="campoNome" name="nome" required autocomplete="name">
+            </div>
+            <div class="form-campo">
+              <label for="campoEmail" data-i18n="label_email">E-mail</label>
+              <input type="email" id="campoEmail" name="email" autocomplete="email">
+            </div>
           </div>
           <div class="form-campo">
-            <label for="campoEmail" data-i18n="label_email">E-mail</label>
-            <input type="email" id="campoEmail" name="email" required autocomplete="email">
+            <label for="campoMarca" data-i18n="label_marca">Marca / empresa</label>
+            <input type="text" id="campoMarca" name="marca" required autocomplete="organization">
           </div>
           <div class="form-campo">
-            <label for="campoMensagem" data-i18n="label_mensagem">Mensagem</label>
-            <textarea id="campoMensagem" name="mensagem" rows="5" required></textarea>
+            <label for="campoMensagem" data-i18n="label_projeto_contato">Conta sobre o projeto</label>
+            <textarea id="campoMensagem" name="mensagem" rows="5" data-i18n-ph="ph_projeto_contato" placeholder="Produto, tipo de vídeo, prazo, o que você imagina..."></textarea>
           </div>
-          <button type="submit" class="botao botao-primario" data-i18n="botao_enviar">Enviar mensagem</button>
-          <div class="form-confirmacao" id="formConfirmacao" role="status" data-i18n="confirmacao">Mensagem recebida! Em breve eu te respondo por e-mail ou WhatsApp.</div>
+          <button type="submit" class="botao botao-primario" data-i18n="botao_enviar">Enviar pelo WhatsApp</button>
+          <div class="form-confirmacao" id="formConfirmacao" role="status" data-i18n="confirmacao">Prontinho! Abri o WhatsApp com a sua mensagem pronta. É só enviar que eu respondo em até 24h.</div>
         </form>
       </div>
     </section>
@@ -1228,9 +1243,11 @@
       subtitulo_depoimentos: "Depoimentos",
       contato_titulo: "Bora criar algo <em><span class='letra-j-min'>j</span>untos</em>.",
       contato_sub: "Me conta sobre o seu produto ou marca e o que você precisa. É só mandar um WhatsApp ou e-mail, respondo em até 24h.",
-      label_nome: "Nome", label_email: "E-mail", label_mensagem: "Mensagem",
-      botao_enviar: "Enviar mensagem",
-      confirmacao: "Mensagem recebida! Em breve eu te respondo por e-mail ou WhatsApp.",
+      label_nome: "Nome", label_email: "E-mail (opcional)", label_mensagem: "Mensagem",
+      label_marca: "Marca / empresa", label_projeto_contato: "Conta sobre o projeto",
+      ph_projeto_contato: "Produto, tipo de vídeo, prazo, o que você imagina...",
+      botao_enviar: "Enviar pelo WhatsApp",
+      confirmacao: "Prontinho! Abri o WhatsApp com a sua mensagem pronta. É só enviar que eu respondo em até 24h.",
       footer_email: "E-mail",
       footer_ano: '© <span id="anoAtual"></span> Jéssica Mendes. Todos os direitos reservados.',
       captura_fechar_aria: "Fechar",
@@ -1279,9 +1296,11 @@
       subtitulo_depoimentos: "Testimonials",
       contato_titulo: "Let's create something <em>together</em>.",
       contato_sub: "Tell me about your product or brand and what you need. Just send a WhatsApp or an email, I reply within 24h.",
-      label_nome: "Name", label_email: "Email", label_mensagem: "Message",
-      botao_enviar: "Send message",
-      confirmacao: "Message received! I will get back to you soon by email or WhatsApp.",
+      label_nome: "Name", label_email: "Email (optional)", label_mensagem: "Message",
+      label_marca: "Brand / company", label_projeto_contato: "Tell me about the project",
+      ph_projeto_contato: "Product, type of video, deadline, what you have in mind...",
+      botao_enviar: "Send on WhatsApp",
+      confirmacao: "All set! I opened WhatsApp with your message ready. Just send it and I reply within 24h.",
       footer_email: "Email",
       footer_ano: '© <span id="anoAtual"></span> Jéssica Mendes. All rights reserved.',
       captura_fechar_aria: "Close",
@@ -1868,6 +1887,13 @@
     form.addEventListener("submit", (ev) => {
       ev.preventDefault();
       if(!form.checkValidity()){ form.reportValidity(); return; }
+      // O formulario nao tem servidor: monta a mensagem e abre o WhatsApp da Jess com tudo preenchido.
+      const v = (id) => document.getElementById(id).value.trim();
+      const projeto = v("campoMensagem"), email = v("campoEmail");
+      const msg = idiomaAtual === "en"
+        ? `Hi Jessica! I am ${v("campoNome")}, from ${v("campoMarca")}. I saw your portfolio and would like UGC content.${projeto ? " About the project: " + projeto : ""}${email ? " My email: " + email : ""}`
+        : `Oi Jéssica! Sou ${v("campoNome")}, da marca ${v("campoMarca")}. Vi seu portfólio e quero criar conteúdo UGC.${projeto ? " Sobre o projeto: " + projeto : ""}${email ? " Meu e-mail: " + email : ""}`;
+      window.open(`${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
       confirmacao.classList.add("visivel");
       form.reset();
     });
