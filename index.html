@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261116-a">
+<meta name="build" content="20261116-d">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -904,6 +904,13 @@
   .promessas{ gap: 0; margin-top: 24px; }
   .promessas li{ background: none; border: 0; border-radius: 0; border-bottom: 1px solid rgba(107, 67, 50, 0.16); padding: 14px 4px; }
   .promessas li:last-child{ border-bottom: 0; }
+  /* ===== Listras em tom intermediario (entre a original e a apagadinha), Sobre mim e Como funciona ===== */
+  .secao.listrado{ background: repeating-linear-gradient(90deg, #fdf5f7 0 38px, #f1f4fb 38px 76px); }
+  /* ===== Sobre mim: botao compacto de contorno que leva ao Contato ===== */
+  .sobre-cta{ display: inline-flex; align-items: center; margin-top: 22px; padding: 13px 24px; border: 1.5px solid #6b4332; border-radius: 12px; background: transparent; color: #6b4332; font-weight: 800; font-size: 0.9rem; letter-spacing: 0.02em; text-decoration: none; cursor: pointer; transition: background 0.2s, color 0.2s; }
+  .sobre-cta:hover, .sobre-cta:focus-visible{ background: #6b4332; color: #fdf5f7; }
+  @media (max-width: 640px){ .sobre-cta{ display: flex; justify-content: center; text-align: center; font-size: 0.8rem; padding: 14px 10px; text-wrap: balance; }
+  }
 </style>
 </head>
 <body>
@@ -985,12 +992,13 @@
           <div class="sobre-cartao">
           <p class="sobre-lead" data-i18n="sobre_lead"><span class="lead-l1">Oie,</span><span class="lead-l2">eu sou a <span class="letra-j">J</span>ess!</span></p>
           <p data-i18n="sobre_p1">Sou de São Paulo e, há mais de <strong>10 anos</strong>, estou nos bastidores do audiovisual como <strong>maquiadora e produtora</strong>. Hoje uso esse olhar para criar <strong>UGC que parece vida real</strong>: natural, bonito e sem exageros, mostrando o produto do jeito que aparece no dia a dia.</p>
-          <p data-i18n="sobre_p2">Gravo em casa e também na <strong>chácara da minha família</strong>, o que me dá cenários diferentes para cada produto. Crio vídeos de moda, saúde e bem-estar, gastronomia, casa e deco, beleza e experiências.</p>
+          <p data-i18n="sobre_p2">Gravo em casa e também na <strong>chácara da minha família</strong>, o que me dá cenários diferentes para cada produto. Crio vídeos autênticos para a sua marca, produto ou negócio, daqueles que passam confiança e dão vontade de comprar.</p>
           <ul class="promessas">
             <li data-i18n="promessa1">Roteiro aprovado por você antes de gravar</li>
             <li data-i18n="promessa2">Uma rodada de ajustes inclusa no pacote</li>
             <li data-i18n="promessa3">Conteúdo pronto em até 72 horas úteis após a aprovação</li>
           </ul>
+          <a class="sobre-cta" href="#contato" data-i18n="sobre_cta">Quero um vídeo para a minha marca →</a>
           </div>
         </div>
       </div>
@@ -1275,13 +1283,14 @@
       sobre_etiqueta: "Sobre mim",
       sobre_lead: "<span class='lead-l1'>Oie,</span><span class='lead-l2'>eu sou a <span class='letra-j'>J</span>ess!</span>",
       sobre_p1: "Sou de São Paulo e, há mais de <strong>10 anos</strong>, estou nos bastidores do audiovisual como <strong>maquiadora e produtora</strong>. Hoje uso esse olhar para criar <strong>UGC que parece vida real</strong>: natural, bonito e sem exageros, mostrando o produto do jeito que aparece no dia a dia.",
-      sobre_p2: "Gravo em casa e também na <strong>chácara da minha família</strong>, o que me dá cenários diferentes para cada produto. Crio vídeos de moda, saúde e bem-estar, gastronomia, casa e deco, beleza e experiências.",
+      sobre_p2: "Gravo em casa e também na <strong>chácara da minha família</strong>, o que me dá cenários diferentes para cada produto. Crio vídeos autênticos para a sua marca, produto ou negócio, daqueles que passam confiança e dão vontade de comprar.",
       sobre_tag1: "Maquiadora e produtora",
       sobre_tag2: "São Paulo · Brasil",
       sobre_tag3: "Casa e chácara",
       promessa1: "Roteiro aprovado por você antes de gravar",
       promessa2: "Uma rodada de ajustes inclusa no pacote",
-      promessa3: "Conteúdo pronto em até 72 horas úteis após a aprovação",      destaques_titulo: 'Conteúdos de <span class="script">destaque</span>',
+      promessa3: "Conteúdo pronto em até 72 horas úteis após a aprovação",
+      sobre_cta: "Quero um vídeo para a minha marca →",      destaques_titulo: 'Conteúdos de <span class="script">destaque</span>',
       destaques_sub: "Vídeos que mostram o meu jeito de criar: natural, com cara de vida real.",
       trabalhos_titulo: 'Qual <span class="script">nicho</span> combina com a sua marca?',
       trabalhos_sub: "Escolhe um nicho e depois é só apertar o play.",
@@ -1328,13 +1337,14 @@
       sobre_etiqueta: "About me",
       sobre_lead: "<span class='lead-l1'>Hi,</span><span class='lead-l2'>I am <span class='letra-j'>J</span>ess!</span>",
       sobre_p1: "I am from São Paulo and, for more than <strong>10 years</strong>, I have been behind the scenes of audiovisual work as a <strong>makeup artist and producer</strong>. Today I use that eye to create <strong>UGC that feels like real life</strong>: natural, beautiful and never over the top, showing the product the way it shows up in everyday life.",
-      sobre_p2: "I shoot at home and also at my <strong>family's country house</strong>, which gives me different settings for each product. I create videos in fashion, health and wellness, gastronomy, home and deco, beauty and experiences.",
+      sobre_p2: "I shoot at home and also at my <strong>family's country house</strong>, which gives me different settings for each product. I create authentic videos for your brand, product or business, the kind that build trust and make people want to buy.",
       sobre_tag1: "Makeup artist and producer",
       sobre_tag2: "São Paulo · Brazil",
       sobre_tag3: "Home and country house",
       promessa1: "Script approved by you before filming",
       promessa2: "One round of revisions included in the package",
-      promessa3: "Content ready within 72 business hours after approval",      destaques_titulo: 'Featured <span class="script">content</span>',
+      promessa3: "Content ready within 72 business hours after approval",
+      sobre_cta: "I want a video for my brand →",      destaques_titulo: 'Featured <span class="script">content</span>',
       destaques_sub: "Videos that show my way of creating: natural, with a real-life feel.",
       trabalhos_titulo: 'Which <span class="script">niche</span> fits your brand?',
       trabalhos_sub: "Pick a niche, then just hit play.",
