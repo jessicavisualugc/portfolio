@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261116-i">
+<meta name="build" content="20261116-k">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -921,6 +921,19 @@
   .ver-mais-wrap[hidden]{ display: none; }
   .ver-mais{ padding: 14px 30px; border: 1.5px solid #6b4332; border-radius: 12px; background: transparent; color: #6b4332; font-weight: 800; font-size: 0.9rem; letter-spacing: 0.02em; cursor: pointer; font-family: inherit; transition: background 0.2s, color 0.2s; }
   .ver-mais:hover, .ver-mais:focus-visible{ background: #6b4332; color: #fdf5f7; }
+  /* ===== Cards: bordas arredondadas limpas (sem fundo escuro vazando na curva) ===== */
+  .celular-tela{ background: transparent; isolation: isolate; transform: translateZ(0); }
+  .video-facade{ background: transparent; }
+  .video-facade img{ position: absolute; top: -2px; left: -2px; width: calc(100% + 4px); height: calc(100% + 4px); max-width: none; }
+  /* contorno marrom fino e suave, igual em todos os cards */
+  .celular-tela::after{ content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1.5px rgba(107, 67, 50, 0.3); pointer-events: none; z-index: 4; }
+  .celular-tela.tela-em-foco::after{ display: none; }
+  /* ===== Filtros no celular: uma linha que rola para o lado ===== */
+  @media (max-width: 640px){
+    .filtros{ flex-wrap: nowrap; overflow-x: auto; margin-left: -20px; margin-right: -20px; padding: 2px 20px 8px; scrollbar-width: none; -webkit-overflow-scrolling: touch; margin-bottom: 32px; }
+    .filtros::-webkit-scrollbar{ display: none; }
+    .filtro-botao{ flex: none; white-space: nowrap; }
+  }
 </style>
 </head>
 <body>
@@ -1028,7 +1041,7 @@
           <p class="nicho-frase" id="nichoFrase"></p>
         </div>
         <div class="trabalhos-grid" id="trabalhosGrid"></div>
-        <div class="ver-mais-wrap" hidden><button type="button" class="ver-mais" id="verMais" data-i18n="ver_mais">Ver todos os vídeos</button></div>
+        <div class="ver-mais-wrap" hidden><button type="button" class="ver-mais" id="verMais" data-i18n="ver_mais">Ver mais vídeos</button></div>
       </div>
     </section>
 
@@ -1302,7 +1315,7 @@
       promessa2: "Uma rodada de ajustes inclusa no pacote",
       promessa3: "Conteúdo pronto em até 72 horas úteis após a aprovação",
       sobre_cta: "Quero um vídeo para a minha marca →",
-      ver_mais: "Ver todos os vídeos",      destaques_titulo: 'Conteúdos de <span class="script">destaque</span>',
+      ver_mais: "Ver mais vídeos",      destaques_titulo: 'Conteúdos de <span class="script">destaque</span>',
       destaques_sub: "Vídeos que mostram o meu jeito de criar: natural, com cara de vida real.",
       trabalhos_titulo: 'Qual <span class="script">nicho</span> combina com a sua marca?',
       trabalhos_sub: "Meus vídeos por nicho. Escolhe o da sua marca e aperta o play.",
@@ -1357,7 +1370,7 @@
       promessa2: "One round of revisions included in the package",
       promessa3: "Content ready within 72 business hours after approval",
       sobre_cta: "I want a video for my brand →",
-      ver_mais: "See all videos",      destaques_titulo: 'Featured <span class="script">content</span>',
+      ver_mais: "See more videos",      destaques_titulo: 'Featured <span class="script">content</span>',
       destaques_sub: "Videos that show my way of creating: natural, with a real-life feel.",
       trabalhos_titulo: 'Which <span class="script">niche</span> fits your brand?',
       trabalhos_sub: "My videos by niche. Pick the one for your brand and hit play.",
