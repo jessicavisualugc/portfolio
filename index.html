@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261116-q">
+<meta name="build" content="20261116-ap">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -937,6 +937,71 @@
   /* ===== Servicos e Como funciona: titulo e frase mais juntos, frase numa linha so ===== */
   #servicos .secao-cab h2, #processo .secao-cab h2{ margin-bottom: 12px; }
   #servicos .secao-cab p:not(.etiqueta), #processo .secao-cab p:not(.etiqueta){ max-width: 48em; }
+  /* ===== Servicos: 3 cards com lista (sem numeros), e linha do pacote mensal ===== */
+  #servicos .secao-cab p:not(.etiqueta){ text-wrap: balance; }
+  #servicos .secao-cab p strong{ color: var(--marrom); font-weight: 800; }
+  .servicos-grid{ grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .servico-card{ display: flex; flex-direction: column; padding: 28px 24px 30px; }
+  .servico-card h3{ font-size: 1.4rem; margin-bottom: 10px; }
+  .servico-card p{ font-size: 0.98rem; line-height: 1.55; }
+  .servico-itens{ list-style: none; padding: 18px 0 0; margin: 20px 0 0; border-top: 1px solid rgba(107, 67, 50, 0.14); display: grid; gap: 10px; }
+  .servico-itens li{ position: relative; padding-left: 20px; font-size: 0.92rem; font-weight: 600; color: var(--marrom); }
+  .servico-itens li::before{ content: ""; position: absolute; left: 2px; top: 0.55em; width: 7px; height: 7px; border-radius: 50%; background: var(--azul); }
+  .servicos-pacote{ margin: 34px auto 0; max-width: 46em; text-align: center; font-size: 1rem; color: var(--tinta-suave); }
+  .servicos-pacote strong{ color: var(--marrom); }
+  @media (max-width: 1100px){ .servicos-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px){ .servicos-grid{ grid-template-columns: 1fr; } }
+  /* brilhinho na Prioridade na agenda */
+  .servico-itens li.destaque{ font-weight: 800; }
+  .servico-itens li.destaque::before{ left: 0; top: 0.2em; width: 15px; height: 15px; border-radius: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%236f90d6' d='M12 1c.8 5.6 5.4 10.2 11 11-5.6.8-10.2 5.4-11 11-.8-5.6-5.4-10.2-11-11 5.6-.8 10.2-5.4 11-11z'/%3E%3C/svg%3E") center / contain no-repeat; animation: brilhar 2.4s ease-in-out infinite; }
+  .servico-itens li.destaque{ padding-left: 24px; }
+  @keyframes brilhar{ 0%, 100%{ transform: scale(1) rotate(0deg); opacity: 1; } 50%{ transform: scale(1.3) rotate(18deg); opacity: 0.7; } }
+  @media (prefers-reduced-motion: reduce){ .servico-itens li.destaque::before{ animation: none; } }
+  /* Servicos: icone, titulo, descricao e lista alinhados na mesma altura em todos os cards */
+  .servicos-grid .servico-card{ display: grid; grid-template-rows: subgrid; grid-row: span 4; row-gap: 0; align-content: start; }
+  .servicos-grid .servico-card .servico-icone{ align-self: start; }
+  .servicos-grid .servico-card .servico-itens{ align-self: start; }
+  /* ===== Servicos: destaque suave no Video UGC, borda marrom suave e botao discreto ===== */
+  .servicos-grid .servico-card, #processoGrid .servico-card{ border-color: rgba(107, 67, 50, 0.3); }
+
+  .servicos-cta-wrap{ display: flex; justify-content: center; margin-top: 38px; }
+  /* icones com borda marrom suave e espaco menor entre Conteudos e Servicos (mesmo fundo) */
+  .servicos-grid .servico-icone{ border-color: rgba(107, 67, 50, 0.3); }
+  #trabalhos{ padding-bottom: 40px; }
+  #servicos{ padding-top: 56px; }
+  /* ===== Revisao geral: coerencia, legibilidade e toque no celular ===== */
+  /* azul das palavras cursivas um pouco mais escuro (contraste) */
+  .script{ color: #5f80c8; }
+  /* titulo do Contato igual aos outros: texto marrom e palavra de destaque em azul */
+  .contato-titulo{ color: var(--marrom); }
+  .contato-titulo em{ color: #5f80c8; }
+  /* rodape com o mesmo nome do topo (serifa) */
+  footer .nome{ font-family: "Fraunces", Georgia, serif; font-weight: 500; font-variation-settings: "opsz" 36; font-size: 1.9rem; letter-spacing: 0; }
+  footer .nome .letra-j{ font-weight: 600; }
+  /* etiquetas de produto e legenda da capa maiores */
+  .card-pill{ font-size: 0.72rem; padding: 6px 12px; }
+  @media (min-width: 901px){ .hero-numero-lado span{ font-size: 0.78rem; } }
+  /* area de toque maior, sem mudar o visual */
+  .lang-btn{ position: relative; }
+  .lang-btn::after{ content: ""; position: absolute; inset: -8px -3px; }
+  .nav-toggle{ position: relative; }
+  .nav-toggle::after{ content: ""; position: absolute; inset: -14px -8px -14px -4px; }
+  @media (max-width: 640px){
+    .filtro-botao{ min-height: 44px; }
+    .rodape-redes{ gap: 6px 18px; }
+    .rodape-redes a{ display: inline-block; padding: 12px 2px; }
+    /* Servicos mais compactos no celular */
+    .servicos-grid{ gap: 14px; }
+    .servicos-grid .servico-card{ padding: 22px 20px 24px; }
+    .servicos-grid .servico-icone{ width: 48px; height: 48px; margin-bottom: 10px; }
+    .servicos-grid .servico-icone svg{ width: 24px; height: 24px; }
+    .servicos-grid .servico-card h3{ font-size: 1.3rem; margin-bottom: 8px; }
+    .servico-itens{ margin-top: 14px; padding-top: 14px; gap: 8px; }
+  }
+  /* rodape no mesmo azul da faixa abaixo da capa */
+  footer{ background: #3d5c9c; }
+#trabalhos .secao-cab p:not(.etiqueta){ text-wrap:balance; }
+.secao-cab .trabalhos-nota{ margin-top:8px; font-size:.82rem; line-height:1.4; color:#7a5a4a; opacity:.9; }
 </style>
 </head>
 <body>
@@ -1036,7 +1101,8 @@
         <div class="secao-cab reveal">
           <p class="etiqueta" data-i18n="nav_trabalhos">Conteúdos</p>
           <h2 data-i18n="trabalhos_titulo">Qual <span class="script">nicho</span> combina com a sua marca?</h2>
-          <p data-i18n="trabalhos_sub">Meus vídeos por nicho. Escolhe o da sua marca e aperta o play.</p>
+          <p data-i18n="trabalhos_sub">Aperta o play e veja o estilo que combina com a sua marca.</p>
+          <p class="trabalhos-nota" data-i18n="trabalhos_nota">Criações próprias com produtos reais.</p>
         </div>
         <div class="filtros" id="filtros" role="group" data-i18n-aria="filtros_aria" aria-label="Filtrar conteúdos por nicho"></div>
         <div class="nicho-cab" id="nichoCab" hidden aria-live="polite">
@@ -1055,10 +1121,11 @@
         <div class="secao-cab reveal">
           <p class="etiqueta" data-i18n="nav_servicos">Serviços</p>
           <h2 data-i18n="servicos_titulo">Como eu te <span class="script">ajudo</span></h2>
-          <p data-i18n="servicos_sub">Escolhe o que combina com o momento da sua marca e a gente monta junto.</p>
+          <p data-i18n="servicos_sub"><strong>UGC</strong> vem de “conteúdo gerado por usuários”: é o vídeo com jeito de recomendação natural, e não de propaganda.</p>
         </div>
         </div>
         <div class="servicos-grid" id="servicosGrid"></div>
+        <div class="servicos-cta-wrap"><a class="sobre-cta" href="#contato" data-i18n="servicos_cta">Quero contratar →</a></div>
       </div>
     </section>
 
@@ -1082,11 +1149,11 @@
         <div class="reveal">
           <p class="etiqueta" data-i18n="nav_contato">Contato</p>
           <h2 class="contato-titulo" data-i18n="contato_titulo">Bora criar algo <em><span class='letra-j-min'>j</span>untos</em>?</h2>
-          <p class="contato-sub" data-i18n="contato_sub">Me conta sobre o seu produto ou marca e o que você precisa. É só mandar um WhatsApp ou e-mail, respondo em até 24h.</p>
+          <p class="contato-sub" data-i18n="contato_sub">Me conta sobre a sua marca, produto ou negócio e o que você precisa. É só mandar um WhatsApp ou e-mail, respondo em até 24h.</p>
           <ul class="contato-lista">
+            <li><a class="contato-item" href="https://wa.me/5511989794275?text=Ol%C3%A1!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20sobre%20uma%20parceria." target="_blank" rel="noopener"><span class="contato-icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M9 9.5c.4 2 2.5 4.1 4.5 4.5l1.2-1.2 2 1-.5 1.2c-.5.8-1.6 1-2.8.6-3-1-5.2-3.3-6-6-.3-1 .2-2 .9-2.5l1.1.9Z"/></svg></span><span>(11) 98979-4275</span></a></li>
             <li><a class="contato-item" href="mailto:jessicamendes.ugc@gmail.com"><span class="contato-icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span>jessicamendes.ugc@gmail.com</span></a></li>
             <li><a class="contato-item" href="https://instagram.com/jessicavisual.ugc" target="_blank" rel="noopener"><span class="contato-icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></span><span>@jessicavisual.ugc</span></a></li>
-            <li><a class="contato-item" href="https://wa.me/5511989794275?text=Ol%C3%A1!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20sobre%20uma%20parceria." target="_blank" rel="noopener"><span class="contato-icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M9 9.5c.4 2 2.5 4.1 4.5 4.5l1.2-1.2 2 1-.5 1.2c-.5.8-1.6 1-2.8.6-3-1-5.2-3.3-6-6-.3-1 .2-2 .9-2.5l1.1.9Z"/></svg></span><span>(11) 98979-4275</span></a></li>
           </ul>
         </div>
         <form id="formContato" class="form-card reveal" novalidate>
@@ -1121,9 +1188,9 @@
       <div class="rodape-grid">
         <p class="nome"><span class="letra-j">J</span>éssica Mendes</p>
         <div class="rodape-redes">
-          <a href="https://instagram.com/jessicavisual.ugc" target="_blank" rel="noopener">Instagram</a>
           <a href="https://wa.me/5511989794275" target="_blank" rel="noopener">WhatsApp</a>
           <a href="mailto:jessicamendes.ugc@gmail.com" data-i18n="footer_email">E-mail</a>
+          <a href="https://instagram.com/jessicavisual.ugc" target="_blank" rel="noopener">Instagram</a>
         </div>
       </div>
       <p class="ano" data-i18n="footer_ano">© <span id="anoAtual"></span> Jéssica Mendes. Todos os direitos reservados.</p>
@@ -1183,12 +1250,10 @@
 
       // Serviços (seção Como eu te ajudo)
       servicos: [
-        { numero: "01", titulo: "Vídeo UGC", texto: "Eu cuido do roteiro, da gravação e da edição, com cara de recomendação de quem usa de verdade." },
-        { numero: "02", titulo: "Corte para anúncio", texto: "Versões curtas do vídeo, com ganchos diferentes, para você testar nos seus anúncios." },
-        { numero: "03", titulo: "Fotos do produto", texto: "Fotos simples e naturais, com o produto no meu dia a dia, para o seu site e redes." },
-        { numero: "04", titulo: "Unboxing", texto: "Eu abro a caixa e mostro tudo: embalagem, detalhes e a minha primeira reação." },
-        { numero: "05", titulo: "Publicação no meu perfil", texto: "O conteúdo também vai para o meu Instagram, com a marcação da sua marca." },
-        { numero: "06", titulo: "Pacote mensal", texto: "Vídeos e fotos combinados todo mês, com valor especial e prioridade na minha agenda." }
+        { titulo: "Vídeo UGC", texto: "Vídeo com cara de gente de verdade, para o seu produto ou negócio.", itens: ["Review (minha opinião)", "Unboxing (abrindo a caixa)", "Produto em uso"] },
+        { titulo: "Para anúncios", texto: "O seu vídeo pronto para anunciar, com versões diferentes para você testar.", itens: ["Reels", "TikTok", "Shorts"] },
+        { titulo: "Fotos do produto", texto: "Fotos naturais do seu produto, para o site e as redes.", itens: ["Close nos detalhes", "Produto na mão", "Cenas do dia a dia"] },
+        { titulo: "Pacote mensal", texto: "Vídeos e fotos todo mês, montados junto com você.", itens: ["Valor especial", "Entregas combinadas", "*Prioridade na agenda"] }
       ],
 
       // Métricas com contador. Só os números reais informados; o quarto espaço fica livre.
@@ -1256,12 +1321,10 @@
         { chave: "experiencias", rotulo: "Experiences", frase: "Moments to live, enjoy and tell, from start to finish." }
       ],
       servicos: [
-        { numero: "01", titulo: "UGC video", texto: "I handle the script, filming and editing, so it feels like a recommendation from someone who really uses it." },
-        { numero: "02", titulo: "Ad cutdown", texto: "Short versions of the video, with different hooks, for you to test in your ads." },
-        { numero: "03", titulo: "Product photos", texto: "Simple, natural photos with the product in my everyday life, for your site and socials." },
-        { numero: "04", titulo: "Unboxing", texto: "I open the box and show it all: packaging, details and my first reaction." },
-        { numero: "05", titulo: "Posted on my profile", texto: "The content also goes on my Instagram, tagging your brand." },
-        { numero: "06", titulo: "Monthly package", texto: "Videos and photos agreed every month, with a special rate and priority on my calendar." }
+        { titulo: "UGC video", texto: "A video with a real-person feel, for your product or business.", itens: ["Review (my opinion)", "Unboxing (opening the box)", "Product in use"] },
+        { titulo: "For ads", texto: "Your video ready to advertise, with different versions for you to test.", itens: ["Reels", "TikTok", "Shorts"] },
+        { titulo: "Product photos", texto: "Natural photos of your product, for your site and socials.", itens: ["Close-ups of details", "Product in hand", "Everyday scenes"] },
+        { titulo: "Monthly package", texto: "Videos and photos every month, built together with you.", itens: ["Special rate", "Agreed deliveries", "*Calendar priority"] }
       ],
       metricas: [
         { valor: 2, sufixo: "+", rotulo: "videos delivered" },
@@ -1318,20 +1381,22 @@
       promessa2: "Uma rodada de ajustes inclusa no pacote",
       promessa3: "Conteúdo pronto em até 72 horas úteis após a aprovação",
       sobre_cta: "Quero um vídeo para a minha marca →",
-      ver_mais: "Ver mais vídeos",      destaques_titulo: 'Conteúdos de <span class="script">destaque</span>',
+      ver_mais: "Ver mais vídeos",
+      servicos_cta: "Quero contratar →",
       destaques_sub: "Vídeos que mostram o meu jeito de criar: natural, com cara de vida real.",
       trabalhos_titulo: 'Qual <span class="script">nicho</span> combina com a sua marca?',
-      trabalhos_sub: "Meus vídeos por nicho. Escolhe o da sua marca e aperta o play.",
+      trabalhos_sub: "Aperta o play e veja o estilo que combina com a sua marca.",
+      trabalhos_nota: "Criações próprias com produtos reais.",
       filtros_aria: "Filtrar conteúdos por nicho",
       servicos_titulo: 'Como eu te <span class="script">ajudo</span>',
-      servicos_sub: "Escolhe o que combina com o momento da sua marca e a gente monta junto.",
+      servicos_sub: "<strong>UGC</strong> vem de “conteúdo gerado por usuários”: é o vídeo com jeito de recomendação natural, e não de propaganda.",
       processo_titulo: 'Tudo em <span class="script">4 passos</span>',
       processo_sub: "Um passo a passo simples para você saber o que esperar.",
       processo_foto_alt: "Retrato em preto e branco de Jéssica Mendes",
       subtitulo_campanhas: "Resultados de campanha",
       subtitulo_depoimentos: "Depoimentos",
       contato_titulo: "Bora criar algo <em><span class='letra-j-min'>j</span>untos</em>?",
-      contato_sub: "Me conta sobre o seu produto ou marca e o que você precisa. É só mandar um WhatsApp ou e-mail, respondo em até 24h.",
+      contato_sub: "Me conta sobre a sua marca, produto ou negócio e o que você precisa. É só mandar um WhatsApp ou e-mail, respondo em até 24h.",
       label_nome: "Nome", label_email: "E-mail", label_mensagem: "Mensagem",
       label_marca: "Marca / empresa", label_projeto_contato: "Sua marca ou negócio",
       ph_projeto_contato: "Sobre a sua marca, o seu público, o vídeo que imagina...",
@@ -1373,20 +1438,22 @@
       promessa2: "One round of revisions included in the package",
       promessa3: "Content ready within 72 business hours after approval",
       sobre_cta: "I want a video for my brand →",
-      ver_mais: "See more videos",      destaques_titulo: 'Featured <span class="script">content</span>',
+      ver_mais: "See more videos",
+      servicos_cta: "I want to hire you →",
       destaques_sub: "Videos that show my way of creating: natural, with a real-life feel.",
       trabalhos_titulo: 'Which <span class="script">niche</span> fits your brand?',
-      trabalhos_sub: "My videos by niche. Pick the one for your brand and hit play.",
+      trabalhos_sub: "Hit play and see the style that fits your brand.",
+      trabalhos_nota: "Original creations with real products.",
       filtros_aria: "Filter content by niche",
       servicos_titulo: 'How I can <span class="script">help</span>',
-      servicos_sub: "Pick what fits your brand right now and we build it together.",
+      servicos_sub: "<strong>UGC</strong> stands for “user-generated content”: the kind of video that feels like a natural recommendation, not an ad.",
       processo_titulo: 'Everything in <span class="script">4 steps</span>',
       processo_sub: "A simple step by step so you know what to expect.",
       processo_foto_alt: "Black and white portrait of Jéssica Mendes",
       subtitulo_campanhas: "Campaign results",
       subtitulo_depoimentos: "Testimonials",
       contato_titulo: "Let's create something <em>together</em>?",
-      contato_sub: "Tell me about your product or brand and what you need. Just send a WhatsApp or an email, I reply within 24h.",
+      contato_sub: "Tell me about your brand, product or business and what you need. Just send a WhatsApp or an email, I reply within 24h.",
       label_nome: "Name", label_email: "Email", label_mensagem: "Message",
       label_marca: "Brand / company", label_projeto_contato: "Your brand or business",
       ph_projeto_contato: "About your brand, your audience, the video you imagine...",
@@ -1409,13 +1476,13 @@
     pt: [
       { numero: "01", titulo: "Você me conta", texto: "Você me conta sobre a sua marca, produto ou negócio, para quem você vende e o que quer mostrar." },
       { numero: "02", titulo: "Eu escrevo o roteiro", texto: "Escrevo uma proposta de roteiro que tem a sua cara, e você dá o ok." },
-      { numero: "03", titulo: "Gravo e edito", texto: "Gravo mostrando o que você vende, do jeito que aparece no dia a dia, e edito." },
+      { numero: "03", titulo: "Gravo e edito", texto: "Gravo o seu produto, serviço ou espaço de um jeito natural, e edito." },
       { numero: "04", titulo: "Você recebe o vídeo", texto: "O vídeo chega pronto, para postar nas suas redes ou usar nos seus anúncios." }
     ],
     en: [
       { numero: "01", titulo: "You tell me", texto: "You tell me about your brand, product or business, who you sell to and what you want to show." },
       { numero: "02", titulo: "I write the script", texto: "I write a script proposal that sounds like you, and you give the go-ahead." },
-      { numero: "03", titulo: "I film and edit", texto: "I film showing what you sell, the way it shows up in everyday life, and edit it." },
+      { numero: "03", titulo: "I film and edit", texto: "I film your product, service or space in a natural way, and edit it." },
       { numero: "04", titulo: "You get the video", texto: "The video arrives ready to post on your social media or use in your ads." }
     ]
   };
@@ -1796,9 +1863,10 @@
     foto: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-2.5h6L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>`,
     caixa: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-4 9 4v9l-9 4-9-4z"/><path d="M3 8l9 4 9-4M12 12v9"/></svg>`,
     perfil: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.7" cy="7.3" r="0.6" fill="currentColor"/></svg>`,
+    anuncio: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5v3a1 1 0 0 0 1 1h2.5L12 18.5v-13L6.5 9.5H4a1 1 0 0 0-1 1z"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path d="M18.5 6.5a8 8 0 0 1 0 11"/></svg>`,
     pacote: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/><path d="M9 15l2 2 4-4"/></svg>`
   };
-  const ORDEM_ICONES = ["video", "corte", "foto", "caixa", "perfil", "pacote"];
+  const ORDEM_ICONES = ["video", "anuncio", "foto", "pacote"];
 
   function renderizarProcesso(){
     document.getElementById("processoGrid").innerHTML = processo[idiomaAtual].map(s => `
@@ -1813,9 +1881,9 @@
   function renderizarServicos(){    document.getElementById("servicosGrid").innerHTML = conteudo[idiomaAtual].servicos.map((s, i) => `
       <article class="servico-card ${classeReveal()}">
         <span class="servico-icone">${ICONES[ORDEM_ICONES[i]] || ""}</span>
-        <span class="servico-numero">${s.numero}</span>
         <h3>${s.titulo}</h3>
         <p>${s.texto}</p>
+        ${s.itens ? `<ul class="servico-itens">${s.itens.map(x => x.charAt(0) === "*" ? `<li class="destaque">${x.slice(1)}</li>` : `<li>${x}</li>`).join("")}</ul>` : ""}
       </article>
     `).join("");
   }
