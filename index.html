@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261115-q">
+<meta name="build" content="20261115-s">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -31,7 +31,7 @@
 <meta name="theme-color" content="#eef2fa">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&family=Lora:wght@500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&family=Lora:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --ceu: #eef2fa;
@@ -857,7 +857,14 @@
   /* Sobre mim: so cantos suaves e sombra leve, sem o bloco rosa */
   .sobre-grid .polaroid.moldura-capa::before{ display: none; }
   .sobre-grid .polaroid.moldura-capa img{ border-radius: 22px; box-shadow: 0 18px 40px rgba(107, 67, 50, 0.16); }
-</style>
+  /* ===== "UGC Creator" da capa: texto marrom maior, com tracinho azul (sem cara de botao) ===== */
+  .hero-kicker .pill{ display: inline-flex; align-items: center; gap: 14px; background: none; border: 0; border-radius: 0; padding: 0; color: var(--marrom); font-size: 1.2rem; font-weight: 800; letter-spacing: 0.16em; }
+  .hero-kicker .pill::before{ content: ""; display: block; flex: none; width: 24px; height: 24px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%236f90d6' d='M12 1c.8 5.6 5.4 10.2 11 11-5.6.8-10.2 5.4-11 11-.8-5.6-5.4-10.2-11-11 5.6-.8 10.2-5.4 11-11z'/%3E%3C/svg%3E") center / contain no-repeat; }
+  @media (max-width: 640px){ .hero-kicker .pill{ font-size: 1.02rem; gap: 10px; } .hero-kicker .pill::before{ width: 20px; height: 20px; } }
+  /* ===== Nome da capa: Fraunces mais firme, J em Lora (como antes), linhas alinhadas ===== */
+  .hero-painel h1{ font-family: "Fraunces", Georgia, serif; font-weight: 500; font-variation-settings: "opsz" 48; }
+  .hero-painel h1 span + span{ padding-left: 0; }
+  .hero-painel h1 .letra-j{ font-family: "Lora", Georgia, serif; font-weight: 600; }</style>
 </head>
 <body>
 
