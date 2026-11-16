@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261115-x">
+<meta name="build" content="20261115-y">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -875,6 +875,18 @@
     .hero-painel .hero-valor{ font-size: 1.1rem; }
     .hero-painel .hero-nichos span{ font-size: 0.98rem; }
   }
+  /* ===== Capa: botao maior e "10+ anos" ao lado do botao (visivel sem rolar no computador) ===== */
+  .hero-numero-lado{ display: none; }
+  .hero-painel .botao-primario{ min-height: 58px; padding: 0 40px; font-size: 0.92rem; }
+  @media (min-width: 901px){
+    .hero-botoes{ flex-wrap: nowrap; align-items: center; gap: 26px; margin-bottom: 0; }
+    .hero-botoes .botao{ flex: none; }
+    .hero-numeros{ display: none; }
+    .hero-numero-lado{ display: flex; align-items: center; gap: 12px; padding-left: 26px; border-left: 1px solid rgba(107, 67, 50, 0.35); color: #6b4332; }
+    .hero-numero-lado strong{ font-family: "Fraunces", Georgia, serif; font-weight: 500; font-size: 2.8rem; line-height: 1; }
+    .hero-numero-lado span{ font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.35; max-width: 15em; }
+  }
+  @media (max-width: 640px){ .hero-painel .botao-primario{ min-height: 56px; } }
 </style>
 </head>
 <body>
@@ -917,6 +929,10 @@
           <p class="hero-frase hero-nichos" data-i18n="hero_frase"><span>Moda</span><span>Saúde &amp; bem-estar</span><span>Gastronomia</span><i class="quebra"></i><span>Casa &amp; Deco</span><span>Beleza</span><span>Experiências</span></p>
           <div class="hero-botoes">
             <a class="botao botao-primario" href="https://wa.me/5511989794275?text=Ol%C3%A1!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20sobre%20uma%20parceria." target="_blank" rel="noopener" data-i18n="hero_botao_falar">Vamos conversar?</a>
+            <div class="hero-numero-lado">
+              <strong>10+</strong>
+              <span data-i18n="hero_num1_label">anos de audiovisual por trás de cada vídeo</span>
+            </div>
           </div>
           <div class="hero-numeros">
             <div class="hero-numero">
@@ -1147,7 +1163,7 @@
         novo: "Novo",
         assistir: "Assistir",
         contratar: "Falar com a Jess",
-        capaLegenda: "capa 9:16",
+        capaLegenda: "capa 9:16", produto: "Produto",
         metricaLivre: "Espaço para a próxima métrica",
         milUnidade: "mil",
         whatsappTrabalho: (marca) => `Oi, Jess! Vi o vídeo da ${marca} no seu portfólio e gostei. Podemos conversar?`
@@ -1213,7 +1229,7 @@
         novo: "New",
         assistir: "Watch",
         contratar: "Talk to Jess",
-        capaLegenda: "cover 9:16",
+        capaLegenda: "cover 9:16", produto: "Product",
         metricaLivre: "Space for the next metric",
         milUnidade: "K",
         whatsappTrabalho: (marca) => `Hi Jess! I saw the ${marca} video on your portfolio and liked it. Can we chat?`
@@ -1358,12 +1374,12 @@
 
   function miniaturaYoutube(id){ return `https://i.ytimg.com/vi/${id}/oardefault.jpg`; }
 
-  function htmlOverlay(tema, marca){
+  function htmlOverlay(tema, marca, ui){
     if(!tema) return "";
     return `<span class="card-overlay" aria-hidden="true">
         <span class="card-pill">${tema}</span>
         <span class="card-base">
-          ${marca ? `<span class="card-chip">${marca}</span>` : ""}
+          ${marca ? `<span class="card-chip">${(ui && ui.produto) ? ui.produto + ": " : ""}${marca}</span>` : ""}
           <span class="card-titulo">${tema}</span>
         </span>
       </span>`;
@@ -1371,12 +1387,12 @@
 
   function htmlTelaCelular(item, ui, titulo){
     if(!item.video){
-      return `<div class="ph" role="img" aria-label="${titulo}, ${ui.capaLegenda}"><span>${ui.capaLegenda}</span></div>${htmlOverlay(item.tema, item.marca)}`;
+      return `<div class="ph" role="img" aria-label="${titulo}, ${ui.capaLegenda}"><span>${ui.capaLegenda}</span></div>${htmlOverlay(item.tema, item.marca, ui)}`;
     }
     const capa = item.capa ? item.capa : miniaturaYoutube(item.video);
     return `<button type="button" class="video-facade" data-video-id="${item.video}" aria-label="${ui.assistir} ${titulo}">
         <img src="${capa}" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${item.video}/hqdefault.jpg'">
-        ${htmlOverlay(item.tema, item.marca)}
+        ${htmlOverlay(item.tema, item.marca, ui)}
         <span class="play-botao" aria-hidden="true"></span>
       </button>`;
   }
