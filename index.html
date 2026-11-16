@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261115-f">
+<meta name="build" content="20261115-h">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -828,6 +828,11 @@
   .hero-painel .hero-valor{ font-size: clamp(1.05rem, 1.5vw, 1.25rem); font-weight: 500; line-height: 1.5; color: var(--tinta); max-width: 26em; margin: 0 0 22px; }
   .hero-nichos .quebra{ flex-basis: 100%; height: 0; }
   .hero-painel .hero-nichos .quebra + span::before{ content: none; }
+  /* Nichos em baloezinhos (sem asterisco entre as palavras) */
+  .hero-painel .hero-nichos{ gap: 0 10px; align-items: center; }
+  .hero-painel .hero-nichos span{ margin-bottom: 10px; }
+  .hero-painel .hero-nichos span::before, .hero-painel .hero-nichos span + span::before{ content: none !important; display: none; }
+  .hero-painel .hero-nichos span{ display: inline-block; padding: 8px 20px; border: 1.5px solid rgba(107, 67, 50, 0.3); border-radius: 999px; background: rgba(255, 255, 255, 0.65); color: var(--marrom); font-size: 1.2rem; line-height: 1.3; white-space: nowrap; }
   .hero-painel .botao-primario{ min-height: 54px; padding: 0 36px; font-size: 0.85rem; }
   .hero-numeros{ padding-top: 22px; }
   .hero-numero{ display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 14px; }
@@ -837,8 +842,8 @@
     .hero-foto-area{ height: 410px; margin-bottom: 16px; }
     .hero-foto-area .polaroid.moldura-capa img{ object-position: 50% 18%; }
     .hero-painel .hero-valor{ margin: 0 18px 14px; font-size: 1rem; }
-    .hero-painel .hero-nichos{ gap: 4px 16px; font-size: 1rem; }
-    .hero-painel .hero-nichos span + span::before{ content: none; }
+    .hero-painel .hero-nichos{ gap: 0 6px; }
+    .hero-painel .hero-nichos span{ font-size: 0.86rem; padding: 5px 11px; margin-bottom: 8px; }
     .hero-painel .botao-primario{ min-height: 52px; }
   }
   /* Sobre mim: so cantos suaves e sombra leve, sem o bloco rosa */
@@ -2010,6 +2015,26 @@
     window.addEventListener("resize", ajustarAltura);
   }
 
+  /* ==================== ENQUADRAMENTO DA FOTO DA CAPA ==================== */
+  // No computador e no tablet, calcula a posicao da foto para a cabeca ficar logo abaixo do topo,
+  // sem espaco vazio e sem cortar o cabelo, em qualquer largura de tela. No celular vale o CSS.
+  function ajustarFotoCapa(){
+    const img = document.querySelector(".hero-foto-area img");
+    const area = document.querySelector(".hero-foto-area");
+    if(!img || !area) return;
+    if(window.innerWidth <= 640 || !img.naturalWidth){ img.style.objectPosition = ""; return; }
+    const w = area.clientWidth, h = area.clientHeight;
+    if(!w || !h) return;
+    const escala = Math.max(w / img.naturalWidth, h / img.naturalHeight);
+    const alturaImg = img.naturalHeight * escala;
+    const sobra = alturaImg - h;
+    if(sobra <= 0){ img.style.objectPosition = ""; return; }
+    // O topo do cabelo fica a ~9,7% da altura da foto; o recorte comeca em ~7,5%.
+    const inicio = 0.075 * alturaImg;
+    const pos = Math.min(100, Math.max(0, (inicio / sobra) * 100));
+    img.style.objectPosition = "50% " + pos.toFixed(1) + "%";
+  }
+
   /* ==================== ICONE DA ABA ==================== */
   // Desenha o icone (J marrom em uma bolinha azul) com a mesma letra cursiva do site, assim que a fonte carrega.
   function criarFavicon(){
@@ -2082,6 +2107,14 @@
     iniciarContadores();
     iniciarFormulario();
     iniciarCaptura();
+    try{
+      const fotoCapa = document.querySelector(".hero-foto-area img");
+      if(fotoCapa){
+        if(fotoCapa.complete) ajustarFotoCapa(); else fotoCapa.addEventListener("load", ajustarFotoCapa);
+        window.addEventListener("resize", ajustarFotoCapa);
+        window.addEventListener("load", ajustarFotoCapa);
+      }
+    }catch(e){}
     iniciarCursor();
     criarFavicon();
     iniciarAviso();
