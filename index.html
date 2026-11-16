@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261116-d">
+<meta name="build" content="20261116-i">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -911,6 +911,16 @@
   .sobre-cta:hover, .sobre-cta:focus-visible{ background: #6b4332; color: #fdf5f7; }
   @media (max-width: 640px){ .sobre-cta{ display: flex; justify-content: center; text-align: center; font-size: 0.8rem; padding: 14px 10px; text-wrap: balance; }
   }
+  /* ===== Conteudos: card sem pilula de nicho (so o texto embaixo), grade centralizada, botao Ver todos ===== */
+  .card-pill{ display: inline-block; background: rgba(250, 247, 240, 0.94); color: #6b4332; font-weight: 700; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; line-height: 1.1; }
+  .card-base{ margin-top: auto; gap: 4px; }
+  .card-marca{ font-family: "Fraunces", Georgia, serif; font-weight: 500; font-size: 1.45rem; line-height: 1.1; color: #fff; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35); }
+  .trabalhos-grid{ display: flex; flex-wrap: wrap; justify-content: center; gap: 44px 28px; }
+  .trabalho-card{ flex: 0 0 255px; max-width: 100%; }
+  .ver-mais-wrap{ display: flex; justify-content: center; margin-top: 44px; }
+  .ver-mais-wrap[hidden]{ display: none; }
+  .ver-mais{ padding: 14px 30px; border: 1.5px solid #6b4332; border-radius: 12px; background: transparent; color: #6b4332; font-weight: 800; font-size: 0.9rem; letter-spacing: 0.02em; cursor: pointer; font-family: inherit; transition: background 0.2s, color 0.2s; }
+  .ver-mais:hover, .ver-mais:focus-visible{ background: #6b4332; color: #fdf5f7; }
 </style>
 </head>
 <body>
@@ -1010,7 +1020,7 @@
         <div class="secao-cab reveal">
           <p class="etiqueta" data-i18n="nav_trabalhos">Conteúdos</p>
           <h2 data-i18n="trabalhos_titulo">Qual <span class="script">nicho</span> combina com a sua marca?</h2>
-          <p data-i18n="trabalhos_sub">Escolhe um nicho e depois é só apertar o play.</p>
+          <p data-i18n="trabalhos_sub">Meus vídeos por nicho. Escolhe o da sua marca e aperta o play.</p>
         </div>
         <div class="filtros" id="filtros" role="group" data-i18n-aria="filtros_aria" aria-label="Filtrar conteúdos por nicho"></div>
         <div class="nicho-cab" id="nichoCab" hidden aria-live="polite">
@@ -1018,6 +1028,7 @@
           <p class="nicho-frase" id="nichoFrase"></p>
         </div>
         <div class="trabalhos-grid" id="trabalhosGrid"></div>
+        <div class="ver-mais-wrap" hidden><button type="button" class="ver-mais" id="verMais" data-i18n="ver_mais">Ver todos os vídeos</button></div>
       </div>
     </section>
 
@@ -1130,19 +1141,19 @@
       // Trabalhos por nicho. "nicho" precisa bater com uma "chave" de filtros.
       // Com "video" preenchido (ID do YouTube), o vídeo toca dentro do celular, no próprio site.
       trabalhos: [
-        { marca: "Garlic", nicho: "gastronomia", novo: false, video: "tXJ2VzRaKY4", capa: "https://i.ytimg.com/vi/tXJ2VzRaKY4/oar1.jpg" },
-        { marca: "Mundoflex", nicho: "bemestar", novo: false, video: "iwIwYsA58bQ", capa: "https://i.ytimg.com/vi/iwIwYsA58bQ/oar2.jpg" },
-        { marca: "Coperalcool", nicho: "casa", novo: false, video: "RlpBP8UaaWM", capa: "https://i.ytimg.com/vi/RlpBP8UaaWM/oar3.jpg" },
-        { marca: "Philips Walita", nicho: "casa", novo: false, video: "PcqYjflWICA", capa: "https://i.ytimg.com/vi/PcqYjflWICA/oar3.jpg" },
-        { marca: "Aurora", nicho: "moda", novo: false, video: "L53gM7D-C8Q", capa: "https://i.ytimg.com/vi/L53gM7D-C8Q/oardefault.jpg" },
-        { marca: "Aurora", nicho: "moda", novo: false, video: "MH7tBeV1RjA", capa: "https://i.ytimg.com/vi/MH7tBeV1RjA/oardefault.jpg" },
-        { marca: "Soldiers", nicho: "bemestar", novo: false, video: "29DeDnda3C4", capa: "https://i.ytimg.com/vi/29DeDnda3C4/oar3.jpg" },
-        { marca: "True Source", nicho: "bemestar", novo: false, video: "34-Ib0X9jdY", capa: "https://i.ytimg.com/vi/34-Ib0X9jdY/oardefault.jpg" },
-        { marca: "Natural One", nicho: "gastronomia", novo: false, video: "pF7tPb0dids", capa: "https://i.ytimg.com/vi/pF7tPb0dids/oardefault.jpg" },
-        { marca: "Leão", nicho: "gastronomia", novo: false, video: "5NScq6MnT_M", capa: "https://i.ytimg.com/vi/5NScq6MnT_M/oar1.jpg" },
-        { marca: "Unitermi", nicho: "casa", novo: false, video: "-PWv1B_oGqU", capa: "https://i.ytimg.com/vi/-PWv1B_oGqU/oar2.jpg" },
-        { marca: "Braé", nicho: "beleza", novo: false, video: "sICc1gel7mE", capa: "https://i.ytimg.com/vi/sICc1gel7mE/oar3.jpg" },
-        { marca: "Dance Glow", nicho: "experiencias", novo: false, video: "TEghqGwzSX4", capa: "https://i.ytimg.com/vi/TEghqGwzSX4/oar1.jpg" }
+        { marca: "Mundoflex", nicho: "bemestar", novo: false, produto: "Chinelo", video: "iwIwYsA58bQ", capa: "https://i.ytimg.com/vi/iwIwYsA58bQ/oar2.jpg" },
+        { marca: "Philips Walita", nicho: "casa", novo: false, produto: "Airfryer", video: "PcqYjflWICA", capa: "https://i.ytimg.com/vi/PcqYjflWICA/oar3.jpg" },
+        { marca: "Garlic", nicho: "gastronomia", novo: false, produto: "Tapioca", video: "tXJ2VzRaKY4", capa: "https://i.ytimg.com/vi/tXJ2VzRaKY4/oar1.jpg" },
+        { marca: "Coperalcool", nicho: "casa", novo: false, produto: "Álcool", video: "RlpBP8UaaWM", capa: "https://i.ytimg.com/vi/RlpBP8UaaWM/oar3.jpg" },
+        { marca: "Aurora", nicho: "moda", novo: false, produto: "Camisetas", video: "L53gM7D-C8Q", capa: "https://i.ytimg.com/vi/L53gM7D-C8Q/oardefault.jpg" },
+        { marca: "Aurora", nicho: "moda", novo: false, produto: "Camisetas", video: "MH7tBeV1RjA", capa: "https://i.ytimg.com/vi/MH7tBeV1RjA/oar2.jpg" },
+        { marca: "Soldiers", nicho: "bemestar", novo: false, produto: "Creatina", video: "29DeDnda3C4", capa: "https://i.ytimg.com/vi/29DeDnda3C4/oar3.jpg" },
+        { marca: "True Source", nicho: "bemestar", novo: false, produto: "Colágeno", video: "34-Ib0X9jdY", capa: "https://i.ytimg.com/vi/34-Ib0X9jdY/oardefault.jpg" },
+        { marca: "Natural One", nicho: "gastronomia", novo: false, produto: "Suco de uva", video: "pF7tPb0dids", capa: "https://i.ytimg.com/vi/pF7tPb0dids/oardefault.jpg" },
+        { marca: "Leão", nicho: "gastronomia", novo: false, produto: "Chá de infusão", video: "5NScq6MnT_M", capa: "https://i.ytimg.com/vi/5NScq6MnT_M/oar1.jpg" },
+        { marca: "Unitermi", nicho: "casa", novo: false, produto: "Chaleira elétrica", video: "-PWv1B_oGqU", capa: "https://i.ytimg.com/vi/-PWv1B_oGqU/oar1.jpg" },
+        { marca: "Braé", nicho: "beleza", novo: false, produto: "Fiber Mask", video: "sICc1gel7mE", capa: "https://i.ytimg.com/vi/sICc1gel7mE/oar1.jpg" },
+        { marca: "Dance Glow", nicho: "experiencias", novo: false, produto: "Sandy Júnior", video: "TEghqGwzSX4", capa: "https://i.ytimg.com/vi/TEghqGwzSX4/oar1.jpg" }
       ],
       filtros: [
         { chave: "todos", rotulo: "Todos" },
@@ -1205,19 +1216,19 @@
         { titulo: "Featured video 03", tema: "Home & Deco", marca: "Coperalcool", contexto: "Content showing the product in everyday home life, with naturalness.", video: "RlpBP8UaaWM", capa: "https://i.ytimg.com/vi/RlpBP8UaaWM/oar3.jpg", numero: "", rotulo: "", novo: false }
       ],
       trabalhos: [
-        { marca: "Garlic", nicho: "gastronomia", novo: false, video: "tXJ2VzRaKY4", capa: "https://i.ytimg.com/vi/tXJ2VzRaKY4/oar1.jpg" },
-        { marca: "Mundoflex", nicho: "bemestar", novo: false, video: "iwIwYsA58bQ", capa: "https://i.ytimg.com/vi/iwIwYsA58bQ/oar2.jpg" },
-        { marca: "Coperalcool", nicho: "casa", novo: false, video: "RlpBP8UaaWM", capa: "https://i.ytimg.com/vi/RlpBP8UaaWM/oar3.jpg" },
-        { marca: "Philips Walita", nicho: "casa", novo: false, video: "PcqYjflWICA", capa: "https://i.ytimg.com/vi/PcqYjflWICA/oar3.jpg" },
-        { marca: "Aurora", nicho: "moda", novo: false, video: "L53gM7D-C8Q", capa: "https://i.ytimg.com/vi/L53gM7D-C8Q/oardefault.jpg" },
-        { marca: "Aurora", nicho: "moda", novo: false, video: "MH7tBeV1RjA", capa: "https://i.ytimg.com/vi/MH7tBeV1RjA/oardefault.jpg" },
-        { marca: "Soldiers", nicho: "bemestar", novo: false, video: "29DeDnda3C4", capa: "https://i.ytimg.com/vi/29DeDnda3C4/oar3.jpg" },
-        { marca: "True Source", nicho: "bemestar", novo: false, video: "34-Ib0X9jdY", capa: "https://i.ytimg.com/vi/34-Ib0X9jdY/oardefault.jpg" },
-        { marca: "Natural One", nicho: "gastronomia", novo: false, video: "pF7tPb0dids", capa: "https://i.ytimg.com/vi/pF7tPb0dids/oardefault.jpg" },
-        { marca: "Leão", nicho: "gastronomia", novo: false, video: "5NScq6MnT_M", capa: "https://i.ytimg.com/vi/5NScq6MnT_M/oar1.jpg" },
-        { marca: "Unitermi", nicho: "casa", novo: false, video: "-PWv1B_oGqU", capa: "https://i.ytimg.com/vi/-PWv1B_oGqU/oar2.jpg" },
-        { marca: "Braé", nicho: "beleza", novo: false, video: "sICc1gel7mE", capa: "https://i.ytimg.com/vi/sICc1gel7mE/oar3.jpg" },
-        { marca: "Dance Glow", nicho: "experiencias", novo: false, video: "TEghqGwzSX4", capa: "https://i.ytimg.com/vi/TEghqGwzSX4/oar1.jpg" }
+        { marca: "Mundoflex", nicho: "bemestar", novo: false, produto: "Slides", video: "iwIwYsA58bQ", capa: "https://i.ytimg.com/vi/iwIwYsA58bQ/oar2.jpg" },
+        { marca: "Philips Walita", nicho: "casa", novo: false, produto: "Air fryer", video: "PcqYjflWICA", capa: "https://i.ytimg.com/vi/PcqYjflWICA/oar3.jpg" },
+        { marca: "Garlic", nicho: "gastronomia", novo: false, produto: "Tapioca", video: "tXJ2VzRaKY4", capa: "https://i.ytimg.com/vi/tXJ2VzRaKY4/oar1.jpg" },
+        { marca: "Coperalcool", nicho: "casa", novo: false, produto: "Alcohol", video: "RlpBP8UaaWM", capa: "https://i.ytimg.com/vi/RlpBP8UaaWM/oar3.jpg" },
+        { marca: "Aurora", nicho: "moda", novo: false, produto: "T-shirts", video: "L53gM7D-C8Q", capa: "https://i.ytimg.com/vi/L53gM7D-C8Q/oardefault.jpg" },
+        { marca: "Aurora", nicho: "moda", novo: false, produto: "T-shirts", video: "MH7tBeV1RjA", capa: "https://i.ytimg.com/vi/MH7tBeV1RjA/oar2.jpg" },
+        { marca: "Soldiers", nicho: "bemestar", novo: false, produto: "Creatine", video: "29DeDnda3C4", capa: "https://i.ytimg.com/vi/29DeDnda3C4/oar3.jpg" },
+        { marca: "True Source", nicho: "bemestar", novo: false, produto: "Collagen", video: "34-Ib0X9jdY", capa: "https://i.ytimg.com/vi/34-Ib0X9jdY/oardefault.jpg" },
+        { marca: "Natural One", nicho: "gastronomia", novo: false, produto: "Grape juice", video: "pF7tPb0dids", capa: "https://i.ytimg.com/vi/pF7tPb0dids/oardefault.jpg" },
+        { marca: "Leão", nicho: "gastronomia", novo: false, produto: "Infusion tea", video: "5NScq6MnT_M", capa: "https://i.ytimg.com/vi/5NScq6MnT_M/oar1.jpg" },
+        { marca: "Unitermi", nicho: "casa", novo: false, produto: "Electric kettle", video: "-PWv1B_oGqU", capa: "https://i.ytimg.com/vi/-PWv1B_oGqU/oar1.jpg" },
+        { marca: "Braé", nicho: "beleza", novo: false, produto: "Fiber Mask", video: "sICc1gel7mE", capa: "https://i.ytimg.com/vi/sICc1gel7mE/oar1.jpg" },
+        { marca: "Dance Glow", nicho: "experiencias", novo: false, produto: "Sandy Júnior", video: "TEghqGwzSX4", capa: "https://i.ytimg.com/vi/TEghqGwzSX4/oar1.jpg" }
       ],
       filtros: [
         { chave: "todos", rotulo: "All" },
@@ -1290,10 +1301,11 @@
       promessa1: "Roteiro aprovado por você antes de gravar",
       promessa2: "Uma rodada de ajustes inclusa no pacote",
       promessa3: "Conteúdo pronto em até 72 horas úteis após a aprovação",
-      sobre_cta: "Quero um vídeo para a minha marca →",      destaques_titulo: 'Conteúdos de <span class="script">destaque</span>',
+      sobre_cta: "Quero um vídeo para a minha marca →",
+      ver_mais: "Ver todos os vídeos",      destaques_titulo: 'Conteúdos de <span class="script">destaque</span>',
       destaques_sub: "Vídeos que mostram o meu jeito de criar: natural, com cara de vida real.",
       trabalhos_titulo: 'Qual <span class="script">nicho</span> combina com a sua marca?',
-      trabalhos_sub: "Escolhe um nicho e depois é só apertar o play.",
+      trabalhos_sub: "Meus vídeos por nicho. Escolhe o da sua marca e aperta o play.",
       filtros_aria: "Filtrar conteúdos por nicho",
       servicos_titulo: 'Como eu te <span class="script">ajudo</span>',
       servicos_sub: "Escolhe o que combina com o momento da sua marca, e a gente monta junto.",
@@ -1344,10 +1356,11 @@
       promessa1: "Script approved by you before filming",
       promessa2: "One round of revisions included in the package",
       promessa3: "Content ready within 72 business hours after approval",
-      sobre_cta: "I want a video for my brand →",      destaques_titulo: 'Featured <span class="script">content</span>',
+      sobre_cta: "I want a video for my brand →",
+      ver_mais: "See all videos",      destaques_titulo: 'Featured <span class="script">content</span>',
       destaques_sub: "Videos that show my way of creating: natural, with a real-life feel.",
       trabalhos_titulo: 'Which <span class="script">niche</span> fits your brand?',
-      trabalhos_sub: "Pick a niche, then just hit play.",
+      trabalhos_sub: "My videos by niche. Pick the one for your brand and hit play.",
       filtros_aria: "Filter content by niche",
       servicos_titulo: 'How I can <span class="script">help</span>',
       servicos_sub: "Pick what fits your brand right now, and we build it together.",
@@ -1401,12 +1414,12 @@
 
   function miniaturaYoutube(id){ return `https://i.ytimg.com/vi/${id}/oardefault.jpg`; }
 
-  function htmlOverlay(tema, marca, ui){
+  function htmlOverlay(tema, marca, ui, produto){
     if(!tema) return "";
     return `<span class="card-overlay" aria-hidden="true">
-        <span class="card-pill">${tema}</span>
+        ${produto ? `<span class="card-pill">${produto}</span>` : ""}
         <span class="card-base">
-          ${marca ? `<span class="card-chip">${(ui && ui.produto) ? `<span class="card-prod">${ui.produto}</span>` : ""}${marca}</span>` : ""}
+          ${marca ? `<span class="card-marca">${marca}</span>` : ""}
           <span class="card-titulo">${tema}</span>
         </span>
       </span>`;
@@ -1414,12 +1427,12 @@
 
   function htmlTelaCelular(item, ui, titulo){
     if(!item.video){
-      return `<div class="ph" role="img" aria-label="${titulo}, ${ui.capaLegenda}"><span>${ui.capaLegenda}</span></div>${htmlOverlay(item.tema, item.marca, ui)}`;
+      return `<div class="ph" role="img" aria-label="${titulo}, ${ui.capaLegenda}"><span>${ui.capaLegenda}</span></div>${htmlOverlay(item.tema, item.marca, ui, item.produto)}`;
     }
     const capa = item.capa ? item.capa : miniaturaYoutube(item.video);
     return `<button type="button" class="video-facade" data-video-id="${item.video}" aria-label="${ui.assistir} ${titulo}">
         <img src="${capa}" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${item.video}/hqdefault.jpg'">
-        ${htmlOverlay(item.tema, item.marca, ui)}
+        ${htmlOverlay(item.tema, item.marca, ui, item.produto)}
         <span class="play-botao" aria-hidden="true"></span>
       </button>`;
   }
@@ -1739,12 +1752,27 @@
     cab.hidden = false;
   }
 
+  let todosAberto = false;
+  const LIMITE_INICIAL = 8;
   function filtrarTrabalhos(nicho){
     atualizarNichoCab(nicho);
-    document.querySelectorAll(".trabalho-card").forEach(card => {
-      card.style.display = (nicho === "todos" || card.dataset.nicho === nicho) ? "" : "none";
+    let n = 0;
+    const cards = document.querySelectorAll(".trabalho-card");
+    cards.forEach(card => {
+      const bate = (nicho === "todos" || card.dataset.nicho === nicho);
+      let mostra = bate;
+      if(bate && nicho === "todos" && !todosAberto){ n++; mostra = n <= LIMITE_INICIAL; }
+      card.style.display = mostra ? "" : "none";
     });
+    const vm = document.getElementById("verMais");
+    if(vm && vm.parentElement){ vm.parentElement.hidden = !(nicho === "todos" && !todosAberto && cards.length > LIMITE_INICIAL); }
   }
+  document.addEventListener("click", e => {
+    if(e.target.closest && e.target.closest("#verMais")){
+      todosAberto = true;
+      filtrarTrabalhos("todos");
+    }
+  });
 
   const ICONES = {
     video: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg>`,
