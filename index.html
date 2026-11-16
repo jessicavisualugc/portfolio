@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261116-k">
+<meta name="build" content="20261116-q">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -934,6 +934,9 @@
     .filtros::-webkit-scrollbar{ display: none; }
     .filtro-botao{ flex: none; white-space: nowrap; }
   }
+  /* ===== Servicos e Como funciona: titulo e frase mais juntos, frase numa linha so ===== */
+  #servicos .secao-cab h2, #processo .secao-cab h2{ margin-bottom: 12px; }
+  #servicos .secao-cab p:not(.etiqueta), #processo .secao-cab p:not(.etiqueta){ max-width: 48em; }
 </style>
 </head>
 <body>
@@ -1052,7 +1055,7 @@
         <div class="secao-cab reveal">
           <p class="etiqueta" data-i18n="nav_servicos">Serviços</p>
           <h2 data-i18n="servicos_titulo">Como eu te <span class="script">ajudo</span></h2>
-          <p data-i18n="servicos_sub">Escolhe o que combina com o momento da sua marca, e a gente monta junto.</p>
+          <p data-i18n="servicos_sub">Escolhe o que combina com o momento da sua marca e a gente monta junto.</p>
         </div>
         </div>
         <div class="servicos-grid" id="servicosGrid"></div>
@@ -1065,7 +1068,7 @@
         <div class="servicos-topo sem-foto">
           <div class="secao-cab reveal">
             <p class="etiqueta" data-i18n="nav_processo">Como funciona</p>
-            <h2 data-i18n="processo_titulo">Como <span class="script">funciona</span></h2>
+            <h2 data-i18n="processo_titulo">Tudo em <span class="script">4 passos</span></h2>
             <p data-i18n="processo_sub">Um passo a passo simples para você saber o que esperar.</p>
           </div>
         </div>
@@ -1321,8 +1324,8 @@
       trabalhos_sub: "Meus vídeos por nicho. Escolhe o da sua marca e aperta o play.",
       filtros_aria: "Filtrar conteúdos por nicho",
       servicos_titulo: 'Como eu te <span class="script">ajudo</span>',
-      servicos_sub: "Escolhe o que combina com o momento da sua marca, e a gente monta junto.",
-      processo_titulo: 'Como <span class="script">funciona</span>',
+      servicos_sub: "Escolhe o que combina com o momento da sua marca e a gente monta junto.",
+      processo_titulo: 'Tudo em <span class="script">4 passos</span>',
       processo_sub: "Um passo a passo simples para você saber o que esperar.",
       processo_foto_alt: "Retrato em preto e branco de Jéssica Mendes",
       subtitulo_campanhas: "Resultados de campanha",
@@ -1376,8 +1379,8 @@
       trabalhos_sub: "My videos by niche. Pick the one for your brand and hit play.",
       filtros_aria: "Filter content by niche",
       servicos_titulo: 'How I can <span class="script">help</span>',
-      servicos_sub: "Pick what fits your brand right now, and we build it together.",
-      processo_titulo: 'How it <span class="script">works</span>',
+      servicos_sub: "Pick what fits your brand right now and we build it together.",
+      processo_titulo: 'Everything in <span class="script">4 steps</span>',
       processo_sub: "A simple step by step so you know what to expect.",
       processo_foto_alt: "Black and white portrait of Jéssica Mendes",
       subtitulo_campanhas: "Campaign results",
@@ -1404,16 +1407,16 @@
 
   const processo = {
     pt: [
-      { numero: "01", titulo: "Você me conta", texto: "Você me passa o produto e o objetivo do vídeo." },
-      { numero: "02", titulo: "Roteiro aprovado", texto: "Eu envio o roteiro e só gravo depois da sua aprovação." },
-      { numero: "03", titulo: "Gravo e edito", texto: "Crio o conteúdo com o olhar de quem trabalha com audiovisual há mais de 10 anos." },
-      { numero: "04", titulo: "Entrega e ajuste", texto: "Entrego em até 72 horas úteis após a sua aprovação, com uma rodada de ajustes inclusa." }
+      { numero: "01", titulo: "Você me conta", texto: "Você me conta sobre a sua marca, produto ou negócio, para quem você vende e o que quer mostrar." },
+      { numero: "02", titulo: "Eu escrevo o roteiro", texto: "Escrevo uma proposta de roteiro que tem a sua cara, e você dá o ok." },
+      { numero: "03", titulo: "Gravo e edito", texto: "Gravo mostrando o que você vende, do jeito que aparece no dia a dia, e edito." },
+      { numero: "04", titulo: "Você recebe o vídeo", texto: "O vídeo chega pronto, para postar nas suas redes ou usar nos seus anúncios." }
     ],
     en: [
-      { numero: "01", titulo: "You tell me", texto: "You share the product and the goal of the video." },
-      { numero: "02", titulo: "Script approved", texto: "I send the script and only film after you approve it." },
-      { numero: "03", titulo: "I film and edit", texto: "I create the content with the eye of someone who has worked in audiovisual for over 10 years." },
-      { numero: "04", titulo: "Delivery and revisions", texto: "Delivered within 72 business hours after your approval, with one round of revisions included." }
+      { numero: "01", titulo: "You tell me", texto: "You tell me about your brand, product or business, who you sell to and what you want to show." },
+      { numero: "02", titulo: "I write the script", texto: "I write a script proposal that sounds like you, and you give the go-ahead." },
+      { numero: "03", titulo: "I film and edit", texto: "I film showing what you sell, the way it shows up in everyday life, and edit it." },
+      { numero: "04", titulo: "You get the video", texto: "The video arrives ready to post on your social media or use in your ads." }
     ]
   };
 
