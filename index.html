@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261116-ap">
+<meta name="build" content="20261123-h">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -1001,7 +1001,35 @@
   /* rodape no mesmo azul da faixa abaixo da capa */
   footer{ background: #3d5c9c; }
 #trabalhos .secao-cab p:not(.etiqueta){ text-wrap:balance; }
-.secao-cab .trabalhos-nota{ margin-top:8px; font-size:.82rem; line-height:1.4; color:#7a5a4a; opacity:.9; }
+/* Conteudos em carrossel (rola para o lado, o proximo video aparece cortado na ponta) */
+#trabalhos .trabalhos-grid{ display:flex; flex-wrap:nowrap; justify-content:flex-start; gap:22px; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x proximity; scrollbar-width:none; -webkit-overflow-scrolling:touch; margin-right:calc(50% - 50vw); padding:6px calc(50vw - 50%) 26px 0; }
+#trabalhos .trabalhos-grid::-webkit-scrollbar{ display:none; }
+#trabalhos .trabalho-card{ flex:0 0 255px; scroll-snap-align:start; }
+#trabalhos .trabalho-card.reveal{ opacity:1; transform:none; transition:none; }
+.trab-setas{ display:flex; justify-content:flex-end; gap:10px; margin:-20px 0 12px; }
+.trab-setas[hidden]{ display:none; }
+.trab-seta{ width:42px; height:42px; padding:0; border-radius:50%; border:1.5px solid #6b4332; background:transparent; color:#6b4332; display:grid; place-items:center; cursor:pointer; transition:background .2s, color .2s, opacity .2s; }
+.trab-seta svg{ width:18px; height:18px; }
+.trab-seta:hover:not(:disabled), .trab-seta:focus-visible{ background:#6b4332; color:#fdf5f7; }
+.trab-seta:disabled{ opacity:.35; cursor:default; }
+@media (hover:none){ .trab-setas, .trab-setas[hidden]{ display:none !important; } }
+@media (max-width:640px){
+  #trabalhos .trabalhos-grid{ gap:14px; margin-left:-20px; margin-right:-20px; padding:6px 20px 24px; scroll-padding-left:20px; }
+  #trabalhos .trabalho-card{ flex:0 0 min(70vw,255px); }
+  /* filtros: todos os nichos visiveis de uma vez (quebram em linhas), sem precisar arrastar */
+  #trabalhos .filtros{ flex-wrap:wrap; overflow:visible; margin-left:0; margin-right:0; padding:0; gap:8px; margin-bottom:26px; }
+  #trabalhos .filtro-botao{ flex:0 0 auto; padding-left:14px; padding-right:14px; font-size:0.72rem; }
+}
+/* Galeria (mural de fotos) */
+.secao.galeria{ padding-top:0; padding-bottom:84px; }
+#galeria{ scroll-margin-top:calc(var(--nav-altura) + var(--aviso, 0px) + 48px); }
+.mural-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:34px; }
+.mural-item{ position:relative; margin:0; aspect-ratio:1/1; overflow:hidden; border-radius:16px; background:#efe6dd; border:1px solid rgba(107,67,50,.18); box-shadow:0 5px 14px rgba(107,67,50,.08); }
+.mural-item img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s ease; }
+@media (hover:hover){ .mural-item:hover img{ transform:scale(1.05); } }
+@media (prefers-reduced-motion:reduce){ .mural-item img{ transition:none; } .mural-item:hover img{ transform:none; } }
+@media (max-width:900px){ .mural-grid{ grid-template-columns:repeat(3,1fr); gap:10px; } }
+@media (max-width:640px){ .mural-grid{ gap:8px; margin-top:26px; } .mural-item{ border-radius:12px; } .secao.galeria{ padding-bottom:56px; } }.secao-cab .trabalhos-nota{ margin-top:8px; font-size:.82rem; line-height:1.4; color:#7a5a4a; opacity:.9; }
 </style>
 </head>
 <body>
@@ -1014,6 +1042,7 @@
           <li><a href="#sobre" data-i18n="nav_sobre">Sobre</a></li>
           <li><a href="#trabalhos" data-i18n="nav_trabalhos">Conteúdos</a></li>
           <li><a href="#servicos" data-i18n="nav_servicos">Serviços</a></li>
+          <li><a href="#galeria" data-i18n="nav_galeria">Galeria</a></li>
           <li><a href="#processo" data-i18n="nav_processo">Como funciona</a></li>
           <li><a href="#contato" data-i18n="nav_contato">Contato</a></li>
         </ul>
@@ -1109,6 +1138,10 @@
           <h3 class="nicho-titulo" id="nichoTitulo"></h3>
           <p class="nicho-frase" id="nichoFrase"></p>
         </div>
+        <div class="trab-setas" id="trabSetas" hidden>
+          <button type="button" class="trab-seta" id="trabPrev" data-i18n-aria="setas_ant" aria-label="Vídeos anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" class="trab-seta" id="trabNext" data-i18n-aria="setas_prox" aria-label="Próximos vídeos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
         <div class="trabalhos-grid" id="trabalhosGrid"></div>
         <div class="ver-mais-wrap" hidden><button type="button" class="ver-mais" id="verMais" data-i18n="ver_mais">Ver mais vídeos</button></div>
       </div>
@@ -1126,6 +1159,36 @@
         </div>
         <div class="servicos-grid" id="servicosGrid"></div>
         <div class="servicos-cta-wrap"><a class="sobre-cta" href="#contato" data-i18n="servicos_cta">Quero contratar →</a></div>
+      </div>
+    </section>
+
+    <!-- 5b. GALERIA (mural de fotos) -->
+    <section id="galeria" class="secao liso galeria">
+      <div class="container">
+        <div class="servicos-topo sem-foto">
+          <div class="secao-cab reveal">
+            <p class="etiqueta" data-i18n="galeria_etiqueta">Galeria</p>
+            <h2 data-i18n="galeria_titulo">Também crio <span class="script">fotos</span></h2>
+            <p data-i18n="galeria_sub">Fotos de produto e de uso, com o mesmo jeito natural dos vídeos.</p>
+          </div>
+        </div>
+        <div class="mural-grid reveal">
+          <figure class="mural-item"><img src="public/mural-01.jpg" alt="Foto de produto criada por Jéssica Mendes" data-i18n-alt="galeria_alt" loading="lazy" style="object-position:50% 40%"></figure>
+          <figure class="mural-item"><img src="public/mural-02.jpg" alt="Foto de produto criada por Jéssica Mendes" data-i18n-alt="galeria_alt" loading="lazy" style="object-position:50% 32%"></figure>
+          <figure class="mural-item"><img src="public/mural-03.jpg" alt="Foto de produto criada por Jéssica Mendes" data-i18n-alt="galeria_alt" loading="lazy" style="object-position:50% 50%"></figure>
+          <figure class="mural-item"><img src="public/mural-04.jpg" alt="Foto de produto criada por Jéssica Mendes" data-i18n-alt="galeria_alt" loading="lazy" style="object-position:50% 50%"></figure>
+          <figure class="mural-item"><img src="public/mural-05.jpg" alt="Foto de produto criada por Jéssica Mendes" data-i18n-alt="galeria_alt" loading="lazy" style="object-position:60% 50%"></figure>
+          <figure class="mural-item"><img src="public/mural-06.jpg" alt="Foto de produto criada por Jéssica Mendes" data-i18n-alt="galeria_alt" loading="lazy" style="object-position:50% 40%"></figure>
+          <figure class="mural-item"><img src="public/mural-07.jpg" alt="Foto de produto criada por Jéssica Mendes" data-i18n-alt="galeria_alt" loading="lazy" style="object-position:50% 30%"></figure>
+          <figure class="mural-item"><img src="public/mural-08.jpg" alt="Foto de produto criada por Jéssica Mendes" data-i18n-alt="galeria_alt" loading="lazy" style="object-position:50% 50%"></figure>
+          <figure class="mural-item"><img src="public/mural-09.jpg" alt="Foto de produto criada por Jéssica Mendes" data-i18n-alt="galeria_alt" loading="lazy" style="object-position:50% 28%"></figure>
+          <figure class="mural-item"><img src="public/mural-10.jpg" alt="Foto de produto criada por Jéssica Mendes" data-i18n-alt="galeria_alt" loading="lazy" style="object-position:50% 45%"></figure>
+          <figure class="mural-item"><img src="public/mural-11.jpg" alt="Foto de produto criada por Jéssica Mendes" data-i18n-alt="galeria_alt" loading="lazy" style="object-position:50% 55%"></figure>
+          <figure class="mural-item"><img src="public/mural-12.jpg" alt="Foto de produto criada por Jéssica Mendes" data-i18n-alt="galeria_alt" loading="lazy" style="object-position:50% 50%"></figure>
+          <figure class="mural-item"><img src="public/mural-13.jpg" alt="Foto de produto criada por Jéssica Mendes" data-i18n-alt="galeria_alt" loading="lazy" style="object-position:50% 35%"></figure>
+          <figure class="mural-item"><img src="public/mural-14.jpg" alt="Foto de produto criada por Jéssica Mendes" data-i18n-alt="galeria_alt" loading="lazy" style="object-position:50% 60%"></figure>
+          <figure class="mural-item"><img src="public/mural-15.jpg" alt="Foto de produto criada por Jéssica Mendes" data-i18n-alt="galeria_alt" loading="lazy" style="object-position:50% 55%"></figure>
+        </div>
       </div>
     </section>
 
@@ -1358,7 +1421,7 @@
   const textosEstaticos = {
     pt: {
       nav_sobre: "Sobre", nav_destaques: "Destaques", nav_trabalhos: "Conteúdos",
-      nav_servicos: "Serviços", nav_processo: "Como funciona", nav_contato: "Contato",
+      nav_servicos: "Serviços", nav_galeria: "Galeria", nav_processo: "Como funciona", nav_contato: "Contato",
       nav_toggle_aria: "Abrir menu",
       hero_valor: "UGC que parece vida real, para marcas que querem vender com naturalidade.",
       hero_frase: "<span>Moda</span><span>Saúde &amp; bem-estar</span><span>Gastronomia</span><i class=\"quebra\"></i><span>Casa &amp; Deco</span><span>Beleza</span><span>Experiências</span>",
@@ -1387,6 +1450,12 @@
       trabalhos_titulo: 'Qual <span class="script">nicho</span> combina com a sua marca?',
       trabalhos_sub: "Aperta o play e veja o estilo que combina com a sua marca.",
       trabalhos_nota: "Criações próprias com produtos reais.",
+      setas_ant: "Vídeos anteriores",
+      setas_prox: "Próximos vídeos",
+      galeria_etiqueta: "Galeria",
+      galeria_titulo: 'Também crio <span class="script">fotos</span>',
+      galeria_sub: "Fotos de produto e de uso, com o mesmo jeito natural dos vídeos.",
+      galeria_alt: "Foto de produto criada por Jéssica Mendes",
       filtros_aria: "Filtrar conteúdos por nicho",
       servicos_titulo: 'Como eu te <span class="script">ajudo</span>',
       servicos_sub: "<strong>UGC</strong> vem de “conteúdo gerado por usuários”: é o vídeo com jeito de recomendação natural, e não de propaganda.",
@@ -1415,7 +1484,7 @@
     },
     en: {
       nav_sobre: "About", nav_destaques: "Highlights", nav_trabalhos: "Content",
-      nav_servicos: "Services", nav_processo: "How it works", nav_contato: "Contact",
+      nav_servicos: "Services", nav_galeria: "Gallery", nav_processo: "How it works", nav_contato: "Contact",
       nav_toggle_aria: "Open menu",
       hero_valor: "UGC that feels like real life, for brands that want to sell naturally.",
       hero_frase: "<span>Fashion</span><span>Health &amp; wellness</span><span>Gastronomy</span><i class=\"quebra\"></i><span>Home &amp; Deco</span><span>Beauty</span><span>Experiences</span>",
@@ -1444,6 +1513,12 @@
       trabalhos_titulo: 'Which <span class="script">niche</span> fits your brand?',
       trabalhos_sub: "Hit play and see the style that fits your brand.",
       trabalhos_nota: "Original creations with real products.",
+      setas_ant: "Previous videos",
+      setas_prox: "Next videos",
+      galeria_etiqueta: "Gallery",
+      galeria_titulo: 'I also create <span class="script">photos</span>',
+      galeria_sub: "Product and lifestyle photos, with the same natural feel as the videos.",
+      galeria_alt: "Product photo created by Jéssica Mendes",
       filtros_aria: "Filter content by niche",
       servicos_titulo: 'How I can <span class="script">help</span>',
       servicos_sub: "<strong>UGC</strong> stands for “user-generated content”: the kind of video that feels like a natural recommendation, not an ad.",
@@ -1836,7 +1911,7 @@
   }
 
   let todosAberto = false;
-  const LIMITE_INICIAL = 8;
+  const LIMITE_INICIAL = 999; // carrossel: todos os videos ficam na fileira que rola para o lado
   function filtrarTrabalhos(nicho){
     atualizarNichoCab(nicho);
     let n = 0;
@@ -1849,7 +1924,37 @@
     });
     const vm = document.getElementById("verMais");
     if(vm && vm.parentElement){ vm.parentElement.hidden = !(nicho === "todos" && !todosAberto && cards.length > LIMITE_INICIAL); }
+    const gradeTrab = document.getElementById("trabalhosGrid");
+    if(gradeTrab) gradeTrab.scrollLeft = 0;
+    setTimeout(() => { if(window.atualizarSetasTrab) window.atualizarSetasTrab(); }, 60);
   }
+  // Setas do carrossel de videos (no computador) e verificacao dos players ao rolar para o lado
+  (function(){
+    const grade = document.getElementById("trabalhosGrid");
+    const ant = document.getElementById("trabPrev");
+    const prox = document.getElementById("trabNext");
+    const caixa = document.getElementById("trabSetas");
+    if(!grade || !ant || !prox || !caixa) return;
+    const passo = () => {
+      const c = [...grade.querySelectorAll(".trabalho-card")].find(x => x.style.display !== "none");
+      const gap = parseFloat(getComputedStyle(grade).columnGap) || 22;
+      return (c ? c.getBoundingClientRect().width : 255) + gap;
+    };
+    window.atualizarSetasTrab = () => {
+      const max = grade.scrollWidth - grade.clientWidth;
+      caixa.hidden = !(max > 6);
+      ant.disabled = grade.scrollLeft <= 4;
+      prox.disabled = grade.scrollLeft >= max - 4;
+    };
+    ant.addEventListener("click", () => grade.scrollBy({ left: -passo() * 2, behavior: reduzirMovimento ? "auto" : "smooth" }));
+    prox.addEventListener("click", () => grade.scrollBy({ left: passo() * 2, behavior: reduzirMovimento ? "auto" : "smooth" }));
+    grade.addEventListener("scroll", () => {
+      window.atualizarSetasTrab();
+      if(window.verificarPlayersCartao) window.verificarPlayersCartao();
+    }, { passive: true });
+    window.addEventListener("resize", () => window.atualizarSetasTrab());
+    window.addEventListener("load", () => window.atualizarSetasTrab());
+  })();
   document.addEventListener("click", e => {
     if(e.target.closest && e.target.closest("#verMais")){
       todosAberto = true;
