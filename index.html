@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261123-h">
+<meta name="build" content="20261123-i">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -1012,10 +1012,10 @@
 .trab-seta svg{ width:18px; height:18px; }
 .trab-seta:hover:not(:disabled), .trab-seta:focus-visible{ background:#6b4332; color:#fdf5f7; }
 .trab-seta:disabled{ opacity:.35; cursor:default; }
-@media (hover:none){ .trab-setas, .trab-setas[hidden]{ display:none !important; } }
 @media (max-width:640px){
   #trabalhos .trabalhos-grid{ gap:14px; margin-left:-20px; margin-right:-20px; padding:6px 20px 24px; scroll-padding-left:20px; }
   #trabalhos .trabalho-card{ flex:0 0 min(70vw,255px); }
+  .trab-setas{ margin:-10px 0 8px; }
   /* filtros: todos os nichos visiveis de uma vez (quebram em linhas), sem precisar arrastar */
   #trabalhos .filtros{ flex-wrap:wrap; overflow:visible; margin-left:0; margin-right:0; padding:0; gap:8px; margin-bottom:26px; }
   #trabalhos .filtro-botao{ flex:0 0 auto; padding-left:14px; padding-right:14px; font-size:0.72rem; }
@@ -1946,8 +1946,9 @@
       ant.disabled = grade.scrollLeft <= 4;
       prox.disabled = grade.scrollLeft >= max - 4;
     };
-    ant.addEventListener("click", () => grade.scrollBy({ left: -passo() * 2, behavior: reduzirMovimento ? "auto" : "smooth" }));
-    prox.addEventListener("click", () => grade.scrollBy({ left: passo() * 2, behavior: reduzirMovimento ? "auto" : "smooth" }));
+    const quantos = () => (window.innerWidth <= 640 ? 1 : 2);
+    ant.addEventListener("click", () => grade.scrollBy({ left: -passo() * quantos(), behavior: reduzirMovimento ? "auto" : "smooth" }));
+    prox.addEventListener("click", () => grade.scrollBy({ left: passo() * quantos(), behavior: reduzirMovimento ? "auto" : "smooth" }));
     grade.addEventListener("scroll", () => {
       window.atualizarSetasTrab();
       if(window.verificarPlayersCartao) window.verificarPlayersCartao();
