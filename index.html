@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261123-ah">
+<meta name="build" content="20261123-ai">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -1106,7 +1106,7 @@
           <svg class="estrela azul" style="top:44px;right:12%;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M12 1c.6 5.6 5.4 10.4 11 11-5.6.6-10.4 5.4-11 11-.6-5.6-5.4-10.4-11-11 5.6-.6 10.4-5.4 11-11z"/></svg>
           <!-- Para trocar a foto: substitua o arquivo public/foto-capa.jpg (mantenha o mesmo nome). Formato retrato, sem corte. -->
           <figure class="polaroid moldura-capa">
-            <img src="public/foto-capa.jpg" alt="Jéssica Mendes, UGC Creator" data-i18n-alt="hero_foto_alt">
+            <img src="public/foto-caixas.jpg" alt="Jéssica Mendes, UGC Creator" data-i18n-alt="hero_foto_alt">
           </figure>
         </div>
       </div>
@@ -1120,7 +1120,7 @@
       <svg class="estrela azul" style="top:46px;right:8%;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M12 1c.6 5.6 5.4 10.4 11 11-5.6.6-10.4 5.4-11 11-.6-5.6-5.4-10.4-11-11 5.6-.6 10.4-5.4 11-11z"/></svg>
       <div class="container sobre-grid">
         <figure class="polaroid moldura-capa reveal" style="margin:0 auto;">
-          <img class="foto-sobre-inteira" src="public/foto-sobre-4.jpg" alt="Jéssica Mendes sorrindo" data-i18n-alt="sobre_foto_alt" loading="lazy">
+          <img class="foto-sobre-inteira" src="public/foto-capa.jpg" alt="Jéssica Mendes sorrindo" data-i18n-alt="sobre_foto_alt" loading="lazy">
         </figure>
         <div class="sobre-texto reveal">
           <h2 class="etiqueta etiqueta-sobre" data-i18n="sobre_etiqueta">Sobre mim</h2>
@@ -2326,8 +2326,8 @@
     const alturaImg = img.naturalHeight * escala;
     const sobra = alturaImg - h;
     if(sobra <= 0){ img.style.objectPosition = ""; return; }
-    // O topo do cabelo fica a ~9,7% da altura da foto; o recorte comeca em ~7,5%.
-    const inicio = 0.075 * alturaImg;
+    // O topo do cabelo fica a ~2,5% da altura da foto; o recorte comeca em ~1%.
+    const inicio = 0.01 * alturaImg;
     const pos = Math.min(100, Math.max(0, (inicio / sobra) * 100));
     img.style.objectPosition = "50% " + pos.toFixed(1) + "%";
   }
