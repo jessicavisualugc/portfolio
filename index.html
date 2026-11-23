@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261123-aj">
+<meta name="build" content="20261123-an">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -1045,6 +1045,14 @@
 @media (max-width:900px){ .mural-grid{ grid-template-columns:repeat(3,1fr); gap:10px; } }
 @media (max-width:640px){ .mural-grid{ gap:8px; margin-top:26px; } .mural-item{ border-radius:12px; } .secao.galeria{ padding-bottom:56px; } }
 .secao-cab .trabalhos-nota{ margin-top:8px; font-size:.82rem; line-height:1.4; color:#7a5a4a; opacity:.9; }
+/* Contato: foto redonda acima do titulo */
+.contato-foto{ display:block; width:104px; height:104px; margin:0 0 20px; border-radius:50%; object-fit:cover; border:3px solid #6f90d6; box-shadow:0 8px 20px rgba(107,67,50,.18); background:#faecf0; }
+@media (max-width:640px){ .contato-foto{ width:88px; height:88px; margin:0 0 16px; } }
+/* Contato: foto redonda e etiqueta lado a lado */
+.contato-topo{ display:flex; align-items:center; gap:16px; margin:0 0 22px; }
+.contato-topo .contato-foto{ margin:0; flex:none; }
+.contato-topo .etiqueta{ margin:0; }
+@media (max-width:640px){ .contato-topo{ gap:14px; margin-bottom:18px; } }
 </style>
 </head>
 <body>
@@ -1219,7 +1227,10 @@
       <svg class="estrela azul" style="top:50px;right:10%;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M12 1c.6 5.6 5.4 10.4 11 11-5.6.6-10.4 5.4-11 11-.6-5.6-5.4-10.4-11-11 5.6-.6 10.4-5.4 11-11z"/></svg>
       <div class="container contato-grid">
         <div class="reveal">
-          <p class="etiqueta" data-i18n="nav_contato">Contato</p>
+          <div class="contato-topo">
+            <img class="contato-foto" src="public/foto-contato-4.jpg" alt="Jéssica Mendes sorrindo" data-i18n-alt="contato_foto_alt" width="400" height="400" loading="lazy">
+            <p class="etiqueta" data-i18n="nav_contato">Contato</p>
+          </div>
           <h2 class="contato-titulo" data-i18n="contato_titulo">Bora criar algo <em><span class='letra-j-min'>j</span>untos</em>?</h2>
           <p class="contato-sub" data-i18n="contato_sub">Me conta sobre a sua marca, produto ou negócio e o que você precisa. É só mandar um WhatsApp ou e-mail, respondo em até 24h.</p>
           <ul class="contato-lista">
@@ -1465,6 +1476,7 @@
       galeria_titulo: 'Também crio <span class="script">fotos</span>',
       galeria_sub: "Imagens de produtos e do dia a dia, com o mesmo jeito natural dos vídeos.",
       galeria_alt: "Foto de produto criada por Jéssica Mendes",
+      contato_foto_alt: "Jéssica Mendes sorrindo",
       filtros_aria: "Filtrar conteúdos por nicho",
       servicos_titulo: 'Como eu te <span class="script">ajudo:</span>',
       servicos_sub: "",
@@ -1528,6 +1540,7 @@
       galeria_titulo: 'I also create <span class="script">photos</span>',
       galeria_sub: "Images of products and everyday life, with the same natural feel as the videos.",
       galeria_alt: "Product photo created by Jéssica Mendes",
+      contato_foto_alt: "Jéssica Mendes smiling",
       filtros_aria: "Filter content by niche",
       servicos_titulo: 'How I can <span class="script">help:</span>',
       servicos_sub: "",
